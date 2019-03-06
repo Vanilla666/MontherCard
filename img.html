@@ -22,7 +22,8 @@
         /* 控制圖片的div */
         /* 拖曳旋轉太快  */
         position: absolute;
-        /*background-color: #29e;*/ /* 控制圖片的div */
+        background-color: #29e;
+        /* 控制圖片的div */
         /* color: white; */
         /* border-radius: 8px; */
         /* padding: 10px; */
@@ -72,8 +73,8 @@
         border-radius: 8px;
         /* padding: 10px; */
         position: absolute;
-        width: 25%;
-        height: 25%;
+        width: 30%;
+        height: 30%;
     }
 
     /* 限制大小的css*/
@@ -94,6 +95,8 @@
     <button onclick="down()" type="button">按下後結合圖片</button>
     <button onclick="combine()" type="button">按钮</button>
     <div id="angle-info">0&deg;</div>
+    <div id="cellphono_info"></div>
+    <div id="scale_info"></div>
     <!-- this 指的是input這個DOM元素-->
     <div class="resize-container">
         <img id="back" />
@@ -116,107 +119,79 @@
 <script async defer src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2"></script>
 <!-- FB SDK  -->
 <script>
-    interact('.resize-drag') //引用套件到 img class resize-drag
 
-        .resizable({ //圖片調整大小的地方
-            restrict: {
-                restriction: 'parent',
-                elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+
+    var scale = 1,
+        gestureArea = document.getElementById('contoller'), /*控制圖片的div*/
+        scaleElement = document.getElementById('portrait'), /* 被控制的img */
+        resetTimeout,
+        outer_x = 0, outer_y = 0, outer_scale = 0;
+
+    interact(gestureArea)
+        .gesturable({ //開始變形時
+            // onstart: function (event) { //準備開始  event = gestureArea
+            //     clearTimeout(resetTimeout);
+            //     scaleElement.classList.remove('reset');
+            // },
+            onmove: function (event) { //開始變形(雙指放大 縮小)所作函數   event = gestureArea
+                scale = scale * (1 + event.ds);
+                document.getElementById("scale_info").innerHTML = scale;
+                gestureArea.style.transform = scaleElement.style.transform =
+                    'scale(' + scale + ')'; // 當     前變形的角度
+                // gestureArea.style.transform = scaleElement.style.transform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
+                // dragMoveListener(event); //加上 拖曳X,Y軸更新 藍色方框不同步
             },
-            // resize from all edges and corners
-            edges: { left: true, right: true, bottom: true, top: true },
-
-            // keep the edges inside the parent
-            restrictEdges: { /* 限制邊 */
-                outer: 'parent',
-                endOnly: true,        
-            },
-
-            // minimum size
-            restrictSize: {
-                // min: { width: 100, height: 50 }, //最小限制
-                // max: { width: 200, height: 100 } //最大限制
-            },
-
-            inertia: true,
-
+            // onend: function (event) { //變形結束 event = gestureArea
+            //     resetTimeout = setTimeout(reset, 1000);
+            //     scaleElement.classList.add('reset');
+            // }
         })
-
-        .on('resizemove', function (event) { //圖片伸縮 
-            var contoller_img = document.getElementById("contoller"); //拿到div
-            contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
-            var target = event.target; //控制圖片的div
-            var x = (parseFloat(target.getAttribute('data-x')) || 0); /*  拿取div data-x  最後轉符點數 */
-            var y = (parseFloat(target.getAttribute('data-y')) || 0); /*  拿取div data-x  最後轉符點數 */
-            //  console.log("x: ", x,"y: ",y ); //指的是框
-
-            // update the element's style
-            target.style.width = contoller_img.style.width = event.rect.width + 'px';//畫面允許更改寬
-            target.style.height = contoller_img.style.height = event.rect.height + 'px';//畫面允許更改高
-            // console.log("畫面當前最大寬度:", target.style.width, "畫面當前限制最大高度:", target.style.height);
-            // translate when resizing from top or left edges
-            x += event.deltaRect.left; /*累加 left 到x  */
-            y += event.deltaRect.top;/*累加 top 到y  */
-
-            target.style.webkitTransform = contoller_img.style.transform =
-                'translate(' + x + 'px,' + y + 'px)'; //div縮放 = img縮放 = 最後操作轉角度
-
-            target.setAttribute('data-x', x); //改變 data-x 用 x
-            target.setAttribute('data-y', y); //改變 data-y 用 y
-            // console.log(target);
-            //  target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
-        });
+        .draggable({ onmove: dragMoveListener }); //拖曳時所作函數 要加上 變化的角度(函數)
 
     function dragMoveListener(event) { //拖曳函數 event 指的是resize-drag
         var contoller_img = document.getElementById("contoller"); //拿到div
         contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
         var target = event.target; //控制圖片的div
-
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;//重新設定x軸屬性 
+        // console.log($(target).get(0).id); //拿到當前控制的ID
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;//重新設定x軸屬性
+        outer_x = x;
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;//重新設定y軸屬性
+        outer_y = y;
+        document.getElementById("cellphono_info").innerHTML = "拿到當前控制的ID: " + $(target).get(0).id + " x: " + outer_x + " y: " + outer_y + "sacle : " + scale;
         // console.log("target x : ", event.dx, "target y : ", y); // 控制圖片的div 的 x,y軸印出
         target.style.webkitTransform = contoller_img.style.webkitTransform = 'translate(' + x + 'px, ' + y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
+        // target.style.webkitTransform = contoller_img.style.webkitTransform ='scale(' + scale + ')';
+
         // console.log(" target : ", target.style.webkitTransform, "contoller :", contoller_img.style.webkitTransform); //顯示設定的屬性
         // update the posiion attributes
         target.setAttribute('data-x', x);//重新data-x更新屬性
         target.setAttribute('data-y', y);//重新data-y更新屬性
     }
 
-    interact('.resize-drag') //重新引用套件去做拖曳這件事
-        .draggable({ //拖曳事件
-            // enable inertial throwing
-            inertia: true,
-            // keep the element within the area of it's parent
-            restrict: { //限制伸縮大小
-                restriction: "parent",
-                endOnly: true, //endOnly選項進行捕捉或限制
-                elementRect: { top: 0.5, left: 0.5, bottom: 0.5, right: 0.5 } //處碰性能
-            },
-            // enable autoScroll
-            autoScroll: true,
+    function reset() {
+        scale = 1;
+        scaleElement.style.webkitTransform =
+            scaleElement.style.transform =
+            'scale(1)';
+    }
 
-            // call this function on every dragmove event
-            onmove: dragMoveListener, //onmove 上增加拖曳函數
+    // var angle = 0; //角度
+    // interact('.resize-drag').gesturable({ // 圖片外框  圖片旋轉
+    //     onmove: function (event) {
+    //         //dx， dy	改變鼠標/觸摸的坐標
 
-        });
-    // window.dragMoveListener = dragMoveListener; //給瀏覽器拖動增加事件(dragMoveListener)
+    //         var contoller_img = document.getElementById("contoller"); //拿到div
+    //         contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
+    //         var target = event.target; //控制圖片的div
+    //         angle += event.da; //累加的旋轉速度
 
+    //         target.style.webkitTransform = contoller_img.style.webkitTransform = 'rotate(' + angle + 'deg)'; //控制圖片的div 跟 img一起設定 旋轉角度 
 
-    var angle = 0; //角度
-    interact('.resize-drag').gesturable({ // 圖片外框  圖片旋轉
-        onmove: function (event) {
-            //dx， dy	改變鼠標/觸摸的坐標
-            var contoller_img = document.getElementById("contoller"); //拿到div
-            contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
-            var target = event.target; //控制圖片的div
-            angle += event.da; //累加的旋轉速度
+    //         document.getElementById('angle-info').textContent = angle.toFixed(2) + '\u00b0'; //輸出轉的角度
 
-            target.style.webkitTransform = contoller_img.style.webkitTransform = 'rotate(' + angle + 'deg)'; //控制圖片的div 跟 img一起設定 旋轉角度 
+    //     }
+    // });
 
-            document.getElementById('angle-info').textContent = angle.toFixed(2) + '\u00b0'; //輸出轉的角度
-
-        }
-    });
 
     function down() { //這個函數是點擊下載執行的方法
         html2canvas($(".resize-container"), { //這是使用了html2canvas這個插件的方法，將class為resize-container的整個節點繪製成畫布
