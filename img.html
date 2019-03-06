@@ -125,7 +125,7 @@
         gestureArea = document.getElementById('contoller'), /*控制圖片的div*/
         scaleElement = document.getElementById('portrait'), /* 被控制的img */
         resetTimeout,
-        outer_x = 0, outer_y = 0, outer_scale = 0;
+        outer_x = 0, outer_y = 0;
 
     interact(gestureArea)
         .gesturable({ //開始變形時
@@ -134,12 +134,14 @@
             //     scaleElement.classList.remove('reset');
             // },
             onmove: function (event) { //開始變形(雙指放大 縮小)所作函數   event = gestureArea
+                var target = event.target;
                 scale = scale * (1 + event.ds);
-                document.getElementById("scale_info").innerHTML = scale;
-                gestureArea.style.transform = scaleElement.style.transform =
-                    'scale(' + scale + ')'; // 當     前變形的角度
-                // gestureArea.style.transform = scaleElement.style.transform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
-                // dragMoveListener(event); //加上 拖曳X,Y軸更新 藍色方框不同步
+                document.getElementById("scale_info").innerHTML = "  縮放時: " + scale;
+                // target.style.webkitTransform = contoller_img.style.webkitTransform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
+                target.style.transform = scaleElement.style.transform = 'scale(' + scale + ')'; // 當前變形的角度         
+                //gestureArea.style.transform = scaleElement.style.transform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
+
+                dragMoveListener(event); //加上 拖曳X,Y軸更新 藍色方框不同步
             },
             // onend: function (event) { //變形結束 event = gestureArea
             //     resetTimeout = setTimeout(reset, 1000);
@@ -148,25 +150,43 @@
         })
         .draggable({ onmove: dragMoveListener }); //拖曳時所作函數 要加上 變化的角度(函數)
 
-    function dragMoveListener(event) { //拖曳函數 event 指的是resize-drag
-        var contoller_img = document.getElementById("contoller"); //拿到div
-        contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
-        var target = event.target; //控制圖片的div
-        // console.log($(target).get(0).id); //拿到當前控制的ID
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;//重新設定x軸屬性
-        outer_x = x;
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;//重新設定y軸屬性
-        outer_y = y;
-        document.getElementById("cellphono_info").innerHTML = "拿到當前控制的ID: " + $(target).get(0).id + " x: " + outer_x + " y: " + outer_y + "sacle : " + scale;
-        // console.log("target x : ", event.dx, "target y : ", y); // 控制圖片的div 的 x,y軸印出
-        target.style.webkitTransform = contoller_img.style.webkitTransform = 'translate(' + x + 'px, ' + y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
-        // target.style.webkitTransform = contoller_img.style.webkitTransform ='scale(' + scale + ')';
 
-        // console.log(" target : ", target.style.webkitTransform, "contoller :", contoller_img.style.webkitTransform); //顯示設定的屬性
-        // update the posiion attributes
-        target.setAttribute('data-x', x);//重新data-x更新屬性
-        target.setAttribute('data-y', y);//重新data-y更新屬性
+    function dragMoveListener(event) {      
+        var target = event.target,
+            // keep the dragged position in the data-x/data-y attributes
+            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        document.getElementById("cellphono_info").innerHTML = "x :" + x + "y :" + y;
+        // outer_x = x;
+        // outer_y = y;
+        // document.getElementById("cellphono_info").innerHTML = "拿到當前控制的ID: " + $(target).get(0).id + " x: " + outer_x + " y: " + outer_y + "移動時 sacle : " + scale;
+        // // translate the element
+        target.style.webkitTransform = scaleElement.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+        // // target.style.transform = scaleElement.style.transform = 'scale(' + scale + ')'; // 當前變形的角度         
+        // // update the posiion attributes
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
     }
+
+    // function dragMoveListener(event) { //拖曳函數 event 指的是resize-drag
+    //     var contoller_img = document.getElementById("contoller"); //拿到div
+    //     contoller_img = $(contoller_img).next().get(0); //拿到div底下的img
+    //     var target = event.target; //控制圖片的div
+    //     // console.log($(target).get(0).id); //拿到當前控制的ID
+    //     x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;//重新設定x軸屬性
+    //     outer_x = x;
+    //     y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;//重新設定y軸屬性
+    //     outer_y = y;
+    //     document.getElementById("cellphono_info").innerHTML = "拿到當前控制的ID: " + $(target).get(0).id + " x: " + outer_x + " y: " + outer_y + "移動時 sacle : " + scale;
+    //     // console.log("target x : ", event.dx, "target y : ", y); // 控制圖片的div 的 x,y軸印出
+    //     target.style.webkitTransform = contoller_img.style.webkitTransform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
+    //     gestureArea.style.transform = scaleElement.style.transform = 'scale(' + scale + ')'; // 當前變形的角度         
+    //     // console.log(" target : ", target.style.webkitTransform, "contoller :", contoller_img.style.webkitTransform); //顯示設定的屬性
+    //     // update the posiion attributes
+    //     // target.setAttribute('data-x', outer_x);//重新data-x更新屬性
+    //     // target.setAttribute('data-y', outer_y);//重新data-y更新屬性
+    // }
 
     function reset() {
         scale = 1;
