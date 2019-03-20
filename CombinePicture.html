@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <img id="CombineImg">
+    <button onclick="FB_link()">點我分享到FB</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- 引用jq -->
+<script async defer src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2"></script>
+<!-- FB SDK  -->
+<script> 
+    var picture = localStorage.getItem('CombinePicture'); //拿剛剛合成好的圖片
+    console.log(picture);
+    var ShareImg = document.getElementById('CombineImg');
+    ShareImg.src = picture;//換上最新一筆 明天要FB/Line 方享 跟介面問題
+    function FB_link() { //FB分享
+        $.ajaxSetup({
+            cache: true
+        });
+        // 取得臉書提供API
+        $.getScript('//connect.facebook.net/en_UK/all.js', function () {
+            // Load the APP / SDK
+            FB.init({
+                appId: '2088163627887886',  // FB APPID
+                cookie: true, // set sessions cookies to allow your server to access the session?
+                status: true, // check the login status upon init?
+                xfbml: true, // parse XFBML tags on this page?
+                frictionlessRequests: true,
+                oauth: true,
+                version: 'v3.2'
+            });
+            FB.login(function (response) { //FB 登入
+                if (response.authResponse) {
+                    FB.api('/me', function (response) { //打路由　
+                        console.log('Good to see you, ' + response.name + '.');
+                    });
+                    console.log(response.authResponse);　//吐回應資訊
+                    window.authToken = response.authResponse.accessToken; //FB 
+                    // 網頁轉圖片分享至臉書
+                    FB.ui({
+                        method: 'share',
+                        href: 'https://developers.facebook.com/docs/',　//imgurl
+                    }, function (response) {
+                        console.log(response); //回應訊息
+                    });
+                    // PostImageToFacebook(window.authToken);
+                }
+            })
+        })
+    }
+    function PostImageToFacebook(authToken) { //分享到ＦＢ
+        // complete_img 完整圖片 URL
+        console.log("FB　token: " + authToken + "img URL: " + complete_img); // OK
+        var fd = new FormData(); //一個新的form 
+        fd.append("access_token", authToken); //FB 登入後的toekn
+        fd.append("source", complete_img); // 圖片 complete_img
+        fd.append("message", "這是一個測試臉書分享圖片功能"); // message
+        // FB.ui({
+        //     method: 'share',
+        //     href: 'https://developers.facebook.com/docs/',　//imgurl
+        // }, function (response) {
+        //     console.log(response); //回應訊息
+        // });
+        try {
+            $.ajax({
+                url: "https://graph.facebook.com/me/photos?access_token=" + authToken,//這裡怪怪的 傳送的url
+                type: "POST",
+                data: fd, //傳送的資料
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    console.log("success " + data);　//成功時印出來
+                    $("#poster").html("Posted Canvas Successfully");
+                    alert("以分享至臉書，請至臉書查看最新消息!!");
+                },
+                error: function (shr, status, data) { //　錯誤印出
+                    console.log("error " + data + " Status " + shr.status);
+                },
+                complete: function () {
+                    console.log("Posted to facebook");　//完成時　印出
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        };
+    }
+</script>
+
+</html>
