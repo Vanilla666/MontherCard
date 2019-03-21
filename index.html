@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta property="og:type" content="website" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,9 @@
         position: absolute;
         touch-action: none;
         top: 30%;
+        /* 30% */
         left: 35%;
+        /* 35% */
         width: 31%;
         height: 21%;
         /* background-color: blue; */
@@ -26,6 +27,7 @@
     .resize-container {
         /* 最大的div把圖片成功合成 */
         position: relative;
+        /*relative  */
         width: 100%;
         /* 769 */
         height: 100%;
@@ -34,6 +36,8 @@
 
     #back {
         /* 固定的背景 */
+        position: relative;
+
         display: inline-block;
         width: 100%;
         height: 100%;
@@ -43,9 +47,11 @@
         /* 被控制的圖片 */
         z-index: -1;
         top: 30%;
+        /* 30% */
         left: 35%;
+        /* 35% */
         background-color: rgb(58, 238, 34);
-        border-radius: 8px;
+        /* border-radius: 8px; */
         position: absolute;
         width: 30%;
         height: 20%;
@@ -55,7 +61,7 @@
     .bgimg_ciclk {
         /* 選擇背景btn */
         top: 90%;
-        left: 40%;
+        left: 44.5%;
         position: absolute;
     }
 
@@ -69,9 +75,11 @@
 
     @media screen and (max-width: 640px) {
         /*  X<640 手機尺寸 */
-        /* body {
+        body {
             background-color: aqua;
-        } */
+        }
+        
+
         .upload_set {
             /* 控制上傳檔案的框 */
             z-index: 2;
@@ -83,9 +91,9 @@
 
     @media screen and (min-width: 641px) and (max-width: 980px) {
         /*  641<X<980 平板尺寸 */
-        /* body {
+        body {
             background-color: blueviolet;
-        } */
+        }
         .upload_set {
             /* 控制上傳檔案的框 */
             /* z-index: 2; */
@@ -97,9 +105,9 @@
 
     @media screen and (min-width: 981px) and (max-width: 1920px) {
         /*  981<X<1920 電腦尺寸 */
-        /* body {
+        body {
             background-color: rgb(150, 179, 25);
-        } */
+        }
     }
 
     /* .carousel-control-next-icon{
@@ -146,6 +154,7 @@
                 </fieldset>
                 <img id="bg3" class="d-block w-100" src="img\b3.png" alt="Third slide" onclick="showPreview(this, 5,'back')">
             </div>
+
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
                     <input type="button" value="選擇背景" onclick="showPreview(this,7,'back')">
@@ -153,6 +162,7 @@
                 </fieldset>
                 <img id="bg4" class="d-block w-100" src="img\b4.png" alt="Third slide" onclick="showPreview(this, 7,'back')">
             </div>
+
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
                     <input type="button" value="選擇背景" onclick="showPreview(this,9,'back')">
@@ -160,6 +170,7 @@
                 </fieldset>
                 <img id="bg5" class="d-block w-100" src="img\b5.png" alt="Third slide" onclick="showPreview(this, 9,'back')">
             </div>
+
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
                     <input type="button" value="選擇背景" onclick="showPreview(this,11,'back')">
@@ -169,11 +180,10 @@
                 <img id="bg6" class="d-block w-100" src="img\b6.png" alt="Third slide" onclick="showPreview(this, 11,'back')">
             </div>
 
-
             <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                 <!-- 後面箭頭 -->
                 <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-                <img src="https://xinyan.000webhostapp.com/Mother/bg/icon-arrow-right-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
+                <img src="img\icon-arrow-right-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
                 </span>
                 <span class="sr-only">Next</span>
             </a>
@@ -181,18 +191,18 @@
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
             <!-- 前面箭頭 -->
-            <img src="https://xinyan.000webhostapp.com/Mother/bg/icon-arrow-left-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
+            <img src="img\icon-arrow-left-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
             </span>
             <span class="sr-only">Previous</span>
         </a>
     </div>
 
-    <!-- <img id="aaa"> -->
     <div id="info">
         <div id="angle-info">0&deg;</div>
         <div id="cellphono_info"></div>
         <div id="scale_info"></div>
     </div>
+
     <!-- <div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
 
     <!-- <div id="poster"> </div> -->
@@ -205,6 +215,7 @@
             <img id="back" />
             <!-- 背景 -->
             <div id="contoller" class="resize-drag"></div>
+            <!-- 控制框 -->
             <img id="portrait" />
             <!-- 上傳的圖片 -->
         </div>
@@ -299,7 +310,7 @@
                 var file = canvas.toDataURL(); //預設是png圖片 base64  
                 // img = file;//圖片拿出
                 console.log("asd", file); //印出合成的圖片
-                ajaxUpLoad(file);//發送base64前端圖片 
+                // ajaxUpLoad(file);//發送base64前端圖片 
             },
         }).then((canvas) => { //把合成好的圖片印到下面做觀看
             document.body.appendChild(canvas); //加元素
@@ -418,9 +429,7 @@
                 var target = event.target;
                 scale = scale * (1 + event.ds);
                 document.getElementById("scale_info").innerHTML = "  縮放時: " + scale;
-                // target.style.webkitTransform = contoller_img.style.webkitTransform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
                 target.style.transform = scaleElement.style.transform = 'scale(' + scale + ')'; // 當前變形的角度         
-                //gestureArea.style.transform = scaleElement.style.transform = 'translate(' + outer_x + 'px, ' + outer_y + 'px)'; // 控制圖片div 跟圖片一起 設定x,y軸屬性
                 dragMoveListener(event); //加上 拖曳X,Y軸更新 藍色方框不同步
             },
         })
