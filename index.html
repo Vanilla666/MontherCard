@@ -66,6 +66,7 @@
         left: 20%;
         position: absolute;
     }
+
     @media screen and (max-width: 640px) {
         /*  X<640 手機尺寸 */
         /* body {
@@ -112,10 +113,9 @@
 
 
     <div id="all_btn">
+        <!-- 所有要用到的功能 -->
         <button onclick="FB_link()">點我分享到FB</button>
         <button onclick="Line_link()">點我分享到LINE</button>
-        <button onclick="load_img()" type="button">讀取放在imgurl</button>
-        <button onclick="alink()" type="button">換到讀取頁</button>
         <button onclick="down()" type="button">確認送出</button>
     </div>
 
@@ -128,12 +128,7 @@
                     <legend>背景圖</legend>
                 </fieldset>
 
-<<<<<<< HEAD:index.html
                 <img id="bg1" class="d-block w-100" src="img\b1.png" alt="First slide" onclick="showPreview(this, 1,'back')">
-=======
-                <img id="bg1" class="d-block w-100" src="img\b1.png"
-                    alt="First slide" onclick="showPreview(this, 1,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
 
             <div class="carousel-item">
@@ -141,12 +136,7 @@
                     <input type="button" value="選擇背景" onclick="showPreview(this,3,'back')">
                     <legend>背景圖</legend>
                 </fieldset>
-<<<<<<< HEAD:index.html
                 <img id="bg2" class="d-block w-100" src="img\b2.png" alt="Second slide" onclick="showPreview(this, 3,'back')">
-=======
-                <img id="bg2" class="d-block w-100" src="img\b2.png"
-                    alt="Second slide" onclick="showPreview(this, 3,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
 
             <div class="carousel-item">
@@ -154,36 +144,21 @@
                     <input type="button" value="選擇背景" onclick="showPreview(this,5,'back')">
                     <legend>背景圖</legend>
                 </fieldset>
-<<<<<<< HEAD:index.html
                 <img id="bg3" class="d-block w-100" src="img\b3.png" alt="Third slide" onclick="showPreview(this, 5,'back')">
-=======
-                <img id="bg3" class="d-block w-100" src="img\b3.png"
-                    alt="Third slide" onclick="showPreview(this, 5,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
                     <input type="button" value="選擇背景" onclick="showPreview(this,7,'back')">
                     <legend>背景圖</legend>
                 </fieldset>
-<<<<<<< HEAD:index.html
                 <img id="bg4" class="d-block w-100" src="img\b4.png" alt="Third slide" onclick="showPreview(this, 7,'back')">
-=======
-                <img id="bg4" class="d-block w-100" src="img\b4.png"
-                    alt="Third slide" onclick="showPreview(this, 7,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
                     <input type="button" value="選擇背景" onclick="showPreview(this,9,'back')">
                     <legend>背景圖</legend>
                 </fieldset>
-<<<<<<< HEAD:index.html
                 <img id="bg5" class="d-block w-100" src="img\b5.png" alt="Third slide" onclick="showPreview(this, 9,'back')">
-=======
-                <img id="bg5" class="d-block w-100" src="img\b5.png"
-                    alt="Third slide" onclick="showPreview(this, 9,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
             <div class="carousel-item">
                 <fieldset class="bgimg_ciclk">
@@ -191,12 +166,7 @@
                     <legend>背景圖</legend>
                 </fieldset>
 
-<<<<<<< HEAD:index.html
                 <img id="bg6" class="d-block w-100" src="img\b6.png" alt="Third slide" onclick="showPreview(this, 11,'back')">
-=======
-                <img id="bg6" class="d-block w-100" src="img\b6.png"
-                    alt="Third slide" onclick="showPreview(this, 11,'back')">
->>>>>>> f95148db1e8ad5d0fd7c3351b6700f863d8751e0:index.html
             </div>
 
 
@@ -269,7 +239,7 @@
     var img; //圖片拿出
     var bg_img; //選到的背景資訊
     document.getElementById("info").hidden = true; //info hidden
-    // document.getElementById("all_btn").hidden = true;//btn hidden
+    document.getElementById("all_btn").hidden = true;//btn hidden
     document.getElementById("img_load").hidden = true;//合成圖片區域 hidden
     function showPreview(source, imgId, back) { //上傳圖片 imgId = 第幾張背景
         // var img = new Image();
@@ -279,7 +249,7 @@
         bg_img = $(info).children().get(x).src; //給到外面變數
         getCanvasBase64(bg_img) /* 把背景轉base64才能做合成 */
             .then(function (base64) {
-                console.log("方式二》》》》》》》》》", base64);
+                console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
                 document.getElementById(back).src = base64; //選到的背景放入back
             }, function (err) {
                 console.log(err);
@@ -332,8 +302,8 @@
                 console.log("asd", file); //印出合成的圖片
                 ajaxUpLoad(file);//發送base64前端圖片 
             },
-        }).then((canvas) => {
-            document.body.appendChild(canvas);
+        }).then((canvas) => { //把合成好的圖片印到下面做觀看
+            document.body.appendChild(canvas); //加元素
         });
     };
     function ajaxUpLoad(file) { // file = base64的前端img
@@ -348,6 +318,7 @@
             success: function (data) { //拿到成功的存儲圖片(http) 
                 console.log("成功: ", data.url);//data.url = 合成好的圖片
                 localStorage.CombinePicture = data.url; //把合成好的圖片丟入到 localStorage
+                location.href = "CombinePicture.html"; //完成後跳轉到合成好的頁面
                 console.log(" 合成好的圖片 ", localStorage.CombinePicture);//印出localStorage.CombinePicture
             },
             error: function (err) {
@@ -355,32 +326,7 @@
             }
         });
     }
-    function load_img() {
-        const self = this;
-        let settings = {
-            headers: {
-                Authorization: 'Bearer ' + token
-            },
-            async: true,
-            crossDomain: true,
-            url: "https://api.imgur.com/3/album/" + album + "/images", //可以拿到上面總共的img
-            method: "GET",
-        };
-        $.ajax(settings).then(
-            function (res) {
-                var x = document.getElementById("aaa");
-                console.log(" 所有圖片: ", res.data); // 可以看見上傳成功後回的值
-                if (complete_img == null) {
-                    complete_img = "https://i.imgur.com/" + res.data.pop().id;
-                } else {
-                    x.src = complete_img;  //完整的圖片URL
-                }
-                // alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。')
-            });
-    }
-    function alink() {
-        window.location = "https://xinyan.000webhostapp.com/Mother/recive.html";
-    }
+
     this.location.src = img; //改變預設圖片
     function Line_link() {
         var test = "https://imgur.com/w8DrJvL"; //生成的圖片 (暫時拿我從imgrl的img)
@@ -490,12 +436,6 @@
         // // update the posiion attributes
         target.setAttribute('data-x', x);
         target.setAttribute('data-y', y);
-    }
-    function reset() {
-        scale = 1;
-        scaleElement.style.webkitTransform =
-            scaleElement.style.transform =
-            'scale(1)';
     }
 </script>
 
