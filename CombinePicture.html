@@ -11,6 +11,7 @@
 <body>
     <img id="CombineImg">
     <button onclick="FB_link()">點我分享到FB</button>
+    <button onclick="Line_link()">點我分享到LINE</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- 引用jq -->
@@ -94,6 +95,19 @@
             console.log(e);
         };
     }
+    function Line_link() {
+        var test = "https://imgur.com/w8DrJvL"; //生成的圖片 (暫時拿我從imgrl的img)
+        var x = encodeURIComponent(test); // 轉utf8
+        // this.location.src = test; //改變預設圖片
+        console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href,"產生的picture :",picture); //改變
+        // var link = "https://xinyan.000webhostapp.com/Mother/test.html";
+        var link = this.location.src;
+        var c = encodeURIComponent(link); //連接
+        var line_link = "https://social-plugins.line.me/lineit/share?url=" + picture;
+        // var line_test = https://social-plugins.line.me/lineit/share?url=https://imgur.com/w8DrJvL&text=https://xinyan.000webhostapp.com/Mother/test.html;
+        location.href = line_link; //跳轉
+        return false;
+    };
 </script>
 
 </html>
