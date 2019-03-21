@@ -17,10 +17,12 @@
 <!-- 引用jq -->
 <script async defer src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2"></script>
 <!-- FB SDK  -->
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<!--  LINE social-plugin -->
 <script> 
     var picture = localStorage.getItem('CombinePicture'); //拿剛剛合成好的圖片
-    console.log("本地網址: ",this.location.href);
-    console.log("localStorage 存放的圖片URL ",picture);
+    console.log("本地網址: ", this.location.href);
+    console.log("localStorage 存放的圖片URL ", picture);
     var ShareImg = document.getElementById('CombineImg');
     ShareImg.src = picture;//換上最新一筆 明天要FB/Line 方享 跟介面問題
     function FB_link() { //FB分享
@@ -99,7 +101,7 @@
         var test = "https://imgur.com/w8DrJvL"; //生成的圖片 (暫時拿我從imgrl的img)
         var x = encodeURIComponent(test); // 轉utf8
         // this.location.src = test; //改變預設圖片
-        console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href,"產生的picture :",picture); //改變
+        console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         // var link = "https://xinyan.000webhostapp.com/Mother/test.html";
         var link = this.location.src;
         var c = encodeURIComponent(link); //連接
