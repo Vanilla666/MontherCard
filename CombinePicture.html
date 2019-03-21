@@ -18,7 +18,8 @@
 <!-- FB SDK  -->
 <script> 
     var picture = localStorage.getItem('CombinePicture'); //拿剛剛合成好的圖片
-    console.log(picture);
+    console.log("本地網址: ",this.location.href);
+    console.log("localStorage 存放的圖片URL ",picture);
     var ShareImg = document.getElementById('CombineImg');
     ShareImg.src = picture;//換上最新一筆 明天要FB/Line 方享 跟介面問題
     function FB_link() { //FB分享
@@ -47,7 +48,7 @@
                     // 網頁轉圖片分享至臉書
                     FB.ui({
                         method: 'share',
-                        href: 'https://developers.facebook.com/docs/',　//imgurl
+                        href: 'https://developers.facebook.com/docs/',　//imgurl 要換成合成圖
                     }, function (response) {
                         console.log(response); //回應訊息
                     });
