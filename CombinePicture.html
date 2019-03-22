@@ -16,17 +16,17 @@
         }
         .set_btn {
             position: absolute;
-            top: 150%;
+            top: 125%;
             left: 30%;
         }
         #FB{
             position: relative;
-            margin-left: 10%;
+            /* margin-left: 10%; */
             /* left: 30%; */
         }
         #Line{
             position: relative;
-            margin-left: 15%;
+            /* margin-left: 15%; */
             /* left: 30%; */
         }
 
@@ -40,8 +40,8 @@
         }
         .set_btn {
             position: absolute;
-            top: 150%;
-            left: 30%;
+            top: 125%;
+            left: 20%;
         }
     }
 
@@ -52,7 +52,7 @@
         }
         .set_btn {
             position: absolute;
-            top: 150%;
+            top: 125%;
             left: 20%;
         }
 
@@ -162,16 +162,9 @@
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         // var link = this.location.src;
         // this.location.src = picture; 
-        var x = "https://social-plugins.line.me/lineit/share?"+ encodeURIComponent(picture);
-        // var link = "http://line.naver.jp/R/msg/text/?"; //要分享
-        // link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
-        // link += encodeURIComponent(pic) + "%0D%0A";
-        // var c = encodeURIComponent(link); //連接
-        // var c = encodeURIComponent(link); //連接
-        // var line_link = encodeURIComponent(this.location.href)+ "%0D%0A" ;
-        // var line_link = "https://social-plugins.line.me/lineit/share?url=" + this.location.href;
-        // var line_test = https://social-plugins.line.me/lineit/share?url=https://imgur.com/w8DrJvL&text=https://xinyan.000webhostapp.com/Mother/test.html;
-        location.href = x; //跳轉
+        // var x = "https://social-plugins.line.me/lineit/share?"+;
+        var line_link = "https://social-plugins.line.me/lineit/share?url=" + picture+ "&text=" +encodeURIComponent("分享測試");
+        location.href = line_link; //跳轉
         return false;
     };
 </script>
