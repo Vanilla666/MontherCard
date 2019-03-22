@@ -159,21 +159,19 @@
         };
     }
     function Line_link() {
-        var test = "https://imgur.com/w8DrJvL"; //生成的圖片 (暫時拿我從imgrl的img)
-        var x = encodeURIComponent(test); // 轉utf8
-        // this.location.src = test; //改變預設圖片
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         // var link = this.location.src;
         // this.location.src = picture; 
-        var link = "http://line.naver.jp/R/msg/text/?"; //要分享
-        link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
+        var x = "https://social-plugins.line.me/lineit/share?"+ encodeURIComponent(picture);
+        // var link = "http://line.naver.jp/R/msg/text/?"; //要分享
+        // link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
         // link += encodeURIComponent(pic) + "%0D%0A";
         // var c = encodeURIComponent(link); //連接
         // var c = encodeURIComponent(link); //連接
         // var line_link = encodeURIComponent(this.location.href)+ "%0D%0A" ;
         // var line_link = "https://social-plugins.line.me/lineit/share?url=" + this.location.href;
         // var line_test = https://social-plugins.line.me/lineit/share?url=https://imgur.com/w8DrJvL&text=https://xinyan.000webhostapp.com/Mother/test.html;
-        location.href = link; //跳轉
+        location.href = x; //跳轉
         return false;
     };
 </script>
