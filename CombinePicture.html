@@ -21,13 +21,13 @@
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 <!--  LINE social-plugin -->
 <script> 
-    var picture = localStorage.getItem('CombinePicture'); //拿剛剛合成好的圖片
-    var x = document.getElementById("test");
+    var picture = localStorage.getItem('CombinePicture'); //用localStorage拿剛剛合成好的圖片
+    // var x = document.getElementById("test");
     // console.log( $(x).get(0)  );
     console.log("本地網址: ", this.location.href);
     console.log("localStorage 存放的圖片URL ", picture);
     var ShareImg = document.getElementById('CombineImg');
-    ShareImg.src = picture;//換上最新一筆 明天要FB/Line 方享 跟介面問題
+    ShareImg.src = picture;//圖片換成剛剛合成好的圖片
     function FB_link() { //FB分享
         $.ajaxSetup({
             cache: true
@@ -108,7 +108,9 @@
         // var link = this.location.src;
         // this.location.src = picture; 
         var link = "http://line.naver.jp/R/msg/text/?"; //要分享
-        link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
+        // link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
+        link += encodeURIComponent("分享測試") + "%0D%0A" ;
+        // var c = encodeURIComponent(link); //連接
         // var c = encodeURIComponent(link); //連接
         // var line_link = encodeURIComponent(this.location.href)+ "%0D%0A" ;
         // var line_link = "https://social-plugins.line.me/lineit/share?url=" + this.location.href;
