@@ -14,6 +14,21 @@
         body {
             background-color: aqua;
         }
+        .set_btn {
+            position: absolute;
+            top: 150%;
+            left: 30%;
+        }
+        #FB{
+            position: relative;
+            margin-left: 10%;
+            /* left: 30%; */
+        }
+        #Line{
+            position: relative;
+            margin-left: 15%;
+            /* left: 30%; */
+        }
 
 
     }
@@ -23,7 +38,11 @@
         body {
             background-color: blueviolet;
         }
-
+        .set_btn {
+            position: absolute;
+            top: 150%;
+            left: 30%;
+        }
     }
 
     @media screen and (min-width: 981px) and (max-width: 1920px) {
@@ -33,12 +52,11 @@
         }
         .set_btn {
             position: absolute;
-            top: 200%;
-            left: 30%;
+            top: 150%;
+            left: 20%;
         }
 
-    }
-
+    }   
     /* .set_btn {
         position: absolute;
         top: 200%;
@@ -50,8 +68,8 @@
     <img id="CombineImg">
     <!-- <div id="test" class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
     <div class="set_btn">
-        <button onclick="FB_link()">點我分享到FB</button>
-        <button onclick="Line_link()">點我分享到LINE</button>
+        <button id="FB" onclick="FB_link()">點我分享到FB</button>
+        <button id="Line" onclick="Line_link()">點我分享到LINE</button>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -148,8 +166,8 @@
         // var link = this.location.src;
         // this.location.src = picture; 
         var link = "http://line.naver.jp/R/msg/text/?"; //要分享
-        // link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
-        link += encodeURIComponent("分享測試") + "%0D%0A";
+        link += encodeURIComponent("分享測試") + "%0D%0A" + encodeURIComponent(picture);
+        // link += encodeURIComponent(pic) + "%0D%0A";
         // var c = encodeURIComponent(link); //連接
         // var c = encodeURIComponent(link); //連接
         // var line_link = encodeURIComponent(this.location.href)+ "%0D%0A" ;
