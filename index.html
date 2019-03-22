@@ -90,7 +90,7 @@
         .upload_set {
             /* 控制上傳檔案的框 */
             z-index: 2;
-            top: 115%;
+            top: 115%; /* 115 */
             left: 10%;
             position: absolute;
         }
@@ -105,8 +105,8 @@
         .upload_set {
             /* 控制上傳檔案的框 */
             /* z-index: 2; */
-            top: 135%;
-            left: 17.5%;
+            top: 140%;
+            left: 19%;
             position: absolute;
         }
     }
@@ -117,7 +117,13 @@
             background-color: rgb(150, 179, 25);
         }
 
-
+        .upload_set {
+            /* 控制上傳檔案的框 */
+            /* z-index: 2; */
+            top: 250%; /* 150 */
+            left: 34%; /* 20 */
+            position: absolute;
+        }
     }
 
     /* .carousel-control-next-icon{
@@ -217,10 +223,10 @@
 
     <!-- <div id="poster"> </div> -->
     <div id="img_load">
-        <fieldset>
+        <div class="upload_set">
             <input type="file" id="file" onchange="fileshow(this,'portrait')" />
             <button onclick="down()" type="button">確認送出</button>
-        </fieldset>
+        </div>
         <div class="resize-container">
             <img id="back" />
             <!-- 背景 -->
