@@ -81,7 +81,6 @@
         #back {
             /* 固定的背景 */
             position: relative;
-
             display: inline-block;
             width: 100%;
             height: 100%;
@@ -90,7 +89,8 @@
         .upload_set {
             /* 控制上傳檔案的框 */
             z-index: 2;
-            top: 115%; /* 115 */
+            top: 115%;
+            /* 115 */
             left: 10%;
             position: absolute;
         }
@@ -120,8 +120,10 @@
         .upload_set {
             /* 控制上傳檔案的框 */
             /* z-index: 2; */
-            top: 250%; /* 150 */
-            left: 34%; /* 20 */
+            top: 250%;
+            /* 150 */
+            left: 34%;
+            /* 20 */
             position: absolute;
         }
     }
@@ -269,16 +271,21 @@
         console.log(event.target.src);
         var x = imgId; //這裡要拿到哪一張圖
         var info = document.getElementsByClassName("carousel-item");
+
         bg_img = $(info).children().get(x).src; //給到外面變數
+
         getCanvasBase64(bg_img) /* 把背景轉base64才能做合成 */
             .then(function (base64) {
                 console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
-                document.getElementById(back).src = base64; //選到的背景放入back
+                document.getElementById(back).src = base64; //選到的背景放入back 拿出來然後打API 轉http 
+                ajaxUpLoad(base64); //傳bg進去
             }, function (err) {
                 console.log(err);
             });
-        var s = document.getElementById("carouselExampleControls").hidden = true; //拿到背景後影藏
-        document.getElementById("img_load").hidden = false;
+
+        // var s = document.getElementById("carouselExampleControls").hidden = true; //拿到背景後影藏
+        // document.getElementById("img_load").hidden = false;
+
     }
     function getCanvasBase64(img) {
         var image = new Image();
@@ -341,9 +348,12 @@
             success: function (data) { //拿到成功的存儲圖片(http) 
                 console.log("成功: ", data.url);//data.url = 合成好的圖片
                 img = data.url; //成功拿到合成照片的資料
-                localStorage.CombinePicture = data.url; //把合成好的圖片丟入到 localStorage
-                location.href = "CombinePicture.html"; //完成後跳轉到合成好的頁面
-                console.log(" 合成好的圖片 ", localStorage.CombinePicture);//印出localStorage.CombinePicture
+                localStorage.bgimg = data.url;
+                console.log("選擇好的背景:  ",localStorage.bgimg); //選擇好的圖片到 upload or share 頁面
+                // localStorage.CombinePicture = data.url; //把合成好的圖片丟入到 localStorage
+                location.href = "uploadorshare.html";//完成後跳轉到uploadorshare 頁面
+                // location.href = "CombinePicture.html"; //完成後跳轉到合成好的頁面
+                // console.log(" 合成好的圖片 ", localStorage.CombinePicture);//印出localStorage.CombinePicture
             },
             error: function (err) {
                 console.log("錯誤: ", err);

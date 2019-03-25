@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    /* Dropdown Button */
+
+    .dropbtn {
+        /* div 底下的btn */
+        background-color: #3498DB;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Dropdown button on hover & focus */
+
+    .dropbtn:hover,
+    .dropbtn:focus {
+        background-color: #2980B9;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+
+    .dropdown {
+        /* div */
+        /* margin-top:25%;   */
+        position: relative; /*  */
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+
+    .dropdown-content {
+        /* btn 底下的選項 */
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        /* min-width: 160px; */
+        width: 100%;
+        /*  */
+        overflow: auto;
+        /* 在小屏幕上啟用滾動 */
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+
+    .dropdown-content button {
+        background-color: #2980B9;
+        color: white;
+        width: 100%;
+        /*  */
+        padding: 10px;
+        /* color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block; */
+    }
+
+    /* Change color of dropdown links on hover */
+
+    .dropdown-content a:hover {
+        background-color: #ddd
+    }
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+    .show {
+        display: block;
+    }
+</style>
+
+<body>
+    <img id="background_img">
+    <div class="dropdown">
+        <!-- 主要div包裹著button和選項 -->
+        <button onclick="share()" class="dropbtn">直接分享</button>
+        <button onclick="upLoadimg()" class="dropbtn">上傳圖片</button>
+        <div id="myDropdown" class="dropdown-content">
+            <button id="Line" onclick="Line_link()">分享到LINE</a>
+        </div>
+    </div>
+</body>
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    var baclground_img = localStorage.getItem('bgimg'); //用localStorage拿剛剛背景的圖片
+    var ShareImg = document.getElementById('background_img');
+    ShareImg.src = baclground_img;//圖片換成剛剛合成好的背景圖片
+    console.log("localStorage 存放的背景URL ", baclground_img);
+    function share() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    function upLoadimg(){
+        location.href = "reimgorsumbit.html";
+    }
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    function Line_link() { // 把背景分享至LINE
+        console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的baclground_img :", baclground_img); //改變
+        var line_link = "https://social-plugins.line.me/lineit/share?url=" + baclground_img + "&text=" + encodeURIComponent("分享背景"); /* Url = bg img */
+        location.href = line_link; //跳轉
+        return false;
+    };
+</script>
+
+</html>
