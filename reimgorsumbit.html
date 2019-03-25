@@ -62,7 +62,7 @@
         <img id="portrait" />
         <!-- 上傳的圖片 -->
     </div>
-    
+
     <input type="file" id="file" onchange="fileshow(this,'portrait')" />
     <button onclick="down()" type="button">確認送出</button>
 
@@ -74,8 +74,13 @@
 <script src="js/html2canvas.js"> </script>
 <!-- 從本地端引入 html2canvas 0.4.1版 這個插件的方法，可以將整個節點繪製成畫布 -->
 <script>
-    var gestureArea = document.getElementById('contoller'); /*控制圖片的div*/
-    var scaleElement = document.getElementById('portrait'); /* 被控制的img */
+
+var angleScale = { angle: 0, scale: 1, }
+    var currentAngle =0, currentScale = 1
+    var x ,y
+    var scaleElement = document.getElementById('contoller'); /*控制圖片的div*/
+    var inputimg = document.getElementById('portrait'); /* 被控制的img */
+
     var back = localStorage.getItem('bgimg'); //用localStorage拿剛剛背景的圖片
     var ShareImg = document.getElementById('back'); //選擇到的背景 轉成base64
     console.log("背景是: ", back);
@@ -99,7 +104,8 @@
                 var file = canvas.toDataURL(); //預設是png圖片 base64  
                 // img = file;//圖片拿出
                 console.log("印出合成的圖片: ", file); //印出合成的圖片
-                document.body.appendChild(canvas); //印出合成好的圖片
+                // alert("請稍等");
+                // document.body.appendChild(canvas); //印出合成好的圖片
                 ajaxUpLoad(file);//發送base64前端圖片 
             },
         });
@@ -169,28 +175,68 @@
         });
     }
 
-    interact(gestureArea)
-        .gesturable({ //開始變形時
-            onmove: function (event) { //開始變形(雙指放大 縮小)所作函數   event = gestureArea
-                var target = event.target;
-                scale = scale * (1 + event.ds);
-                // document.getElementById("scale_info").innerHTML = "  縮放時: " + scale;
-                target.style.transform = scaleElement.style.transform = 'scale(' + scale + ')'; // 當前變形的角度         
-                dragMoveListener(event); //加上 拖曳X,Y軸更新 藍色方框不同步
+    interact(scaleElement)
+    .gesturable({
+        onstart: function (event) {
+            angleScale.angle -= event.angle
+        },
+        onmove: function (event) {
+            
+            currentAngle = event.angle + angleScale.angle
+            currentScale = event.scale * angleScale.scale
+            
+            scaleElement.style.webkitTransform = scaleElement.style.transform = 'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')'
+            inputimg.style.webkitTransform = inputimg.style.transform = 'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')'
+            
+            dragMoveListener(event)
+        },
+        onend: function (event) {
+            angleScale.angle = angleScale.angle + event.angle
+            angleScale.scale = angleScale.scale * event.scale
+        }
+    })
+    .draggable({ 
+        // enable inertial throwing
+        inertia: true,
+            // keep the element within the area of it's parent
+            restrict: {
+                restriction: "parent",
+                endOnly: true,
+                elementRect: { top: 0, left: 0, bottom: 1, right: 1 }   
             },
-        })
-        .draggable({ onmove: dragMoveListener }); //拖曳時所作函數 要加上 變化的角度(函數)
-    function dragMoveListener(event) {
-        var target = event.target,
-            // keep the dragged position in the data-x/data-y attributes
-            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-        // document.getElementById("cellphono_info").innerHTML = "x :" + x + "y :" + y;
-        target.style.webkitTransform = scaleElement.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-        // // update the posiion attributes
-        target.setAttribute('data-x', x);
-        target.setAttribute('data-y', y);
+            // enable autoScroll
+            autoScroll: true,
+
+        onmove: dragMoveListener,
+    
+        onend: function (event) {
+                var textEl = event.target.querySelector('p');
+
+                textEl && (textEl.textContent = 'moved a distance of ' + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) + Math.pow(event.pageY - event.y0, 2) | 0)).toFixed(2) + 'px');
+            }
+    });
+    function dragMoveListener (event) {
+        
+        var target = event.target;
+            // keep the dragged position in the data-x/data-y attributes    將拖動位置保留在data-x / data-y屬性中
+            
+             x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+             y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+            
+            
+        // translate the element
+            
+            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'+'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')'; 
+            inputimg.style.webkitTransform = inputimg.style.transform = 'translate(' + x + 'px, ' + y + 'px)'+'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')';
+          
+        // update the posiion attributes    更新位置屬性
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
     }
+    window.dragMoveListener = dragMoveListener;
+
+
+
 </script>
 
 </html>
