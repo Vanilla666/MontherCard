@@ -161,15 +161,9 @@
     }
     function Line_link() {
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
-        // var link = this.location.src;
-        // this.location.src = picture; 
-        // var x = "https://social-plugins.line.me/lineit/share?"+;
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent(picture) + "%0D%0A" + encodeURIComponent("分享測試") ;
+        link += encodeURIComponent("分享測試")   + "%0D%0A" + encodeURIComponent(picture); //文字 及圖片分享
         location.href = link;
-        // var line_link = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(picture) + "&text=" + encodeURIComponent("分享測試");
-        // location.href = line_link; //跳轉
-        // return false;
     };
 </script>
 
