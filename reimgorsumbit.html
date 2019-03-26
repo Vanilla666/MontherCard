@@ -62,8 +62,9 @@
         <img id="portrait" />
         <!-- 上傳的圖片 -->
     </div>
+    <button type="button" onclick="driverUpload();">重新上傳</button>
+    <input type="file" id="file"  style="display: none" onchange="fileshow(this,'portrait')" />
 
-    <input type="file" id="file" onchange="fileshow(this,'portrait')" />
     <button onclick="down()" type="button">確認送出</button>
 
 </body>
@@ -111,6 +112,9 @@ var angleScale = { angle: 0, scale: 1, }
         });
     };
 
+    function driverUpload() {
+        $('#file').click(); // 模擬文件上傳按鈕點擊操作
+    }
 
 
     function fileshow(source, imgId) { //上傳圖片 this替代成 source 指的這個input 

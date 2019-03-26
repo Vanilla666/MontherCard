@@ -32,7 +32,8 @@
     .dropdown {
         /* div */
         /* margin-top:25%;   */
-        position: relative; /*  */
+        position: relative;
+        /*  */
         display: inline-block;
     }
 
@@ -44,8 +45,8 @@
         position: absolute;
         background-color: #f1f1f1;
         /* min-width: 160px; */
-        width: auto; /* 100% */
-        /*  */
+        width: auto;
+        /* 100% */
         overflow: auto;
         /* 在小屏幕上啟用滾動 */
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -58,12 +59,8 @@
         background-color: #2980B9;
         color: white;
         width: 100%;
-        /*  */
         padding: 10px;
-        /* color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block; */
+
     }
 
     /* Change color of dropdown links on hover */
@@ -100,9 +97,11 @@
     function share() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
-    function upLoadimg(){
+
+    function upLoadimg() {
         location.href = "reimgorsumbit.html";
     }
+    
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
