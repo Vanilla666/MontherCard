@@ -128,26 +128,17 @@
             </div>
 
             <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <!-- 後面箭頭 -->
-                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
                 <img src="img\icon-arrow-right-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
                 </span>
                 <span class="sr-only">Next</span>
             </a>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-            <!-- 前面箭頭 -->
             <img src="img\icon-arrow-left-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
             </span>
             <span class="sr-only">Previous</span>
         </a>
     </div>
-
-
-    <!-- <div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
-
-    <!-- <div id="poster"> </div> -->
     <div id="img_load">
 
         <div class="resize-container">
@@ -175,21 +166,25 @@
     var img; //圖片拿出
     var bg_img; //選到的背景資訊
     function showPreview(source, imgId, back) { //上傳圖片 imgId = 第幾張背景
+        console.log("this img: ",source.src);
         // var img = new Image();
-        console.log(event.target.src);
+        // console.log(event.target.src);
         var x = imgId; //這裡要拿到哪一張圖
         var info = document.getElementsByClassName("carousel-item");
 
         bg_img = $(info).children().get(x).src; //給到外面變數
+        localStorage.bgimg = bg_img; // 把本地背景
+        location.href = "uploadorshare.html";//完成後跳轉到uploadorshare 頁面
 
-        getCanvasBase64(bg_img) /* 把背景轉base64才能做合成 */
-            .then(function (base64) { // 把背景轉base64
-                console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
-                // document.getElementById(back).src = base64; //選到的背景放入back 拿出來然後打API 轉http 
-                ajaxUpLoad(base64); //傳bg進去
-            }, function (err) {
-                console.log(err);
-            });
+        // getCanvasBase64(bg_img) /* 把背景轉base64才能做合成 */
+        //     .then(function (base64) { // 把背景轉base64
+        //         // console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
+
+        //         // document.getElementById(back).src = base64; //選到的背景放入back 拿出來然後打API 轉http 
+        //         // ajaxUpLoad(base64); //傳bg進去
+        //     }, function (err) {
+        //         console.log(err);
+        //     });
 
         // var s = document.getElementById("carouselExampleControls").hidden = true; //拿到背景後影藏
         // document.getElementById("img_load").hidden = false;
@@ -210,6 +205,7 @@
             return deferred.promise();//問題要讓onload完成後再return sessionStorage['imgTest']
         }
     }
+
     function getBase64Image(img, width, height) {
         var canvas = document.createElement("canvas");
         canvas.width = width ? width : img.width;
@@ -219,6 +215,7 @@
         var dataURL = canvas.toDataURL();
         return dataURL;
     }
+
     function fileshow(source, imgId) { //上傳圖片 this替代成 source 指的這個input 
         // console.log( $(source).children() );
         var file = source.files[0]; //傳進的檔案
@@ -232,6 +229,7 @@
             fr.readAsDataURL(file); // 即將被讀取的Blob或File對象
         }
     }
+
     function ajaxUpLoad(file) { // file = base64的前端img
         $.ajax({
             type: "POST",
@@ -246,9 +244,7 @@
                 img = data.url; //成功拿到合成照片的資料
                 localStorage.bgimg = data.url;
                 console.log("選擇好的背景:  ", localStorage.bgimg); //選擇好的圖片到 upload or share 頁面
-                // localStorage.CombinePicture = data.url; //把合成好的圖片丟入到 localStorage
                 location.href = "uploadorshare.html";//完成後跳轉到uploadorshare 頁面
-                // location.href = "CombinePicture.html"; //完成後跳轉到合成好的頁面
                 // console.log(" 合成好的圖片 ", localStorage.CombinePicture);//印出localStorage.CombinePicture
             },
             error: function (err) {
@@ -256,8 +252,6 @@
             }
         });
     }
-
-    // this.location.src = img; //改變預設圖片
 
 
 </script>
