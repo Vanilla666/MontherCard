@@ -164,8 +164,11 @@
         // var link = this.location.src;
         // this.location.src = picture; 
         // var x = "https://social-plugins.line.me/lineit/share?"+;
-        var line_link = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(picture) + "&text=" + encodeURIComponent("分享測試");
-        location.href = line_link; //跳轉
+        var link = "http://line.naver.jp/R/msg/text/?";
+        link += encodeURIComponent(picture) + "%0D%0A" + encodeURIComponent("分享測試") ;
+        location.href = link;
+        // var line_link = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(picture) + "&text=" + encodeURIComponent("分享測試");
+        // location.href = line_link; //跳轉
         // return false;
     };
 </script>
