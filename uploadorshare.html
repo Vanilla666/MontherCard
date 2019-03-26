@@ -101,7 +101,7 @@
     function upLoadimg() {
         location.href = "reimgorsumbit.html";
     }
-    
+
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
@@ -117,7 +117,7 @@
     }
     function Line_link() { // 把背景分享至LINE
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的baclground_img :", baclground_img); //改變
-        var line_link = "https://social-plugins.line.me/lineit/share?url=" + baclground_img + "&text=" + encodeURIComponent("分享背景"); /* Url = bg img */
+        var line_link = "https://social-plugins.line.me/lineit/share?text=" + encodeURIComponent("分享背景")+"&url=" + baclground_img; /* Url = bg img */
         location.href = line_link; //跳轉
         return false;
     };
