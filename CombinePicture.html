@@ -16,7 +16,7 @@
         }
         .set_btn {
             position: absolute;
-            top: 125%;
+            top: 75%;
             left: 30%;
         }
         #FB {
@@ -71,6 +71,7 @@
     <div class="set_btn">
         <button id="FB" onclick="FB_link()">點我分享到FB</button>
         <button id="Line" onclick="Line_link()">點我分享到LINE</button>
+        <button id="download" onclick="download_img()">點我下載卡片</button>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -162,9 +163,29 @@
     function Line_link() {
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent("分享測試")   + "%0D%0A" + encodeURIComponent(picture); //文字 及圖片分享
+        link += encodeURIComponent("分享合成圖") + "%0D%0A" + encodeURIComponent(picture); //文字 及圖片分享
         location.href = link;
     };
+    function download_img() { //下載圖片
+        var src = picture;
+        var imgname = 'testImg.jpg';
+        $('#CombineImg').attr('src', src);
+        // document.getElementById("CombineImg").src;
+
+        // console.log(    $('#CombineImg').attr('src', src));
+        var img = $('#CombineImg').attr("src"); 
+        console.log(img);
+        var alink = document.createElement("a");
+        alink.href =img;
+        alink.download = imgname;
+        alink.click();
+        
+        // var link = document.createElement('a');//創建一個a標籤
+        // link.download = 'MotherCard.png';//a標籤增加一個download屬性，屬性值（my-image-name.jpg）就是合成下載後的文件名
+        // // link.href = picture;//canvas.toDataURL()就是畫布的路徑，將路徑賦給a標籤的href
+        // link.click();//模擬a標籤被點擊，這樣就可以下載了
+
+    }
 </script>
 
 </html>
