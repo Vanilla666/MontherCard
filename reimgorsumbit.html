@@ -104,11 +104,11 @@ var angleScale = { angle: 0, scale: 1, }
             onrendered: function (canvas) { //畫布繪製完成後執行下面內容，function內的canvas這個參數就是已經被繪製成畫布
                 var file = canvas.toDataURL(); //預設是png圖片 base64  
                 // img = file;//圖片拿出
-                var link = document.createElement('a');//創建一個a標籤
-                link.download = 'MotherCard.png';//a標籤增加一個download屬性，屬性值（my-image-name.jpg）就是合成下載後的文件名
-                link.href = canvas.toDataURL();//canvas.toDataURL()就是畫布的路徑，將路徑賦給a標籤的href
-                link.click();//模擬a標籤被點擊，這樣就可以下載了
-                
+                // var link = document.createElement('a');//創建一個a標籤
+                // link.download = 'MotherCard.png';//a標籤增加一個download屬性，屬性值（my-image-name.jpg）就是合成下載後的文件名
+                // link.href = canvas.toDataURL();//canvas.toDataURL()就是畫布的路徑，將路徑賦給a標籤的href
+                // link.click();//模擬a標籤被點擊，這樣就可以下載了
+
                 // console.log("印出合成的圖片: ", file); //印出合成的圖片
                 // alert("請稍等");
                 // document.body.appendChild(canvas); //印出合成好的圖片

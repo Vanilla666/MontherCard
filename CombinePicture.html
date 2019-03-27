@@ -76,6 +76,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- 引用jq -->
+<script src="js/download.js"></script>
+<!-- 引用下載 -->
 <script async defer src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2"></script>
 <!-- FB SDK  -->
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
@@ -167,24 +169,43 @@
         location.href = link;
     };
     function download_img() { //下載圖片
-        var src = picture;
-        var imgname = 'testImg.jpg';
-        $('#CombineImg').attr('src', src);
-        // document.getElementById("CombineImg").src;
+         
+        document.getElementById("CombineImg").src;
+            getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
+            .then(function (base64) { // 把背景轉base64
+                 console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間            
+                download(base64,"測試.jpeg","image/jpeg"); //把圖片下載到本地端   
+            }, function (err) {
+                console.log(err);
+            });
 
-        // console.log(    $('#CombineImg').attr('src', src));
-        var img = $('#CombineImg').attr("src"); 
-        console.log(img);
-        var alink = document.createElement("a");
-        alink.href =img;
-        alink.download = imgname;
-        alink.click();
-        
-        // var link = document.createElement('a');//創建一個a標籤
-        // link.download = 'MotherCard.png';//a標籤增加一個download屬性，屬性值（my-image-name.jpg）就是合成下載後的文件名
-        // // link.href = picture;//canvas.toDataURL()就是畫布的路徑，將路徑賦給a標籤的href
-        // link.click();//模擬a標籤被點擊，這樣就可以下載了
 
+    }
+
+     function getCanvasBase64(img) {
+        var image = new Image();
+        //至關重要
+        image.crossOrigin = '';
+        image.src = img;
+        //至關重要
+        var deferred = $.Deferred();
+        if (img) {
+            image.onload = function () {
+                deferred.resolve(getBase64Image(image));//將base64傳給done上傳處理
+                // document.getElementById("container2").appendChild(image);
+            }
+            return deferred.promise();//問題要讓onload完成後再return sessionStorage['imgTest']
+        }
+    }
+
+    function getBase64Image(img, width, height) {
+        var canvas = document.createElement("canvas");
+        canvas.width = width ? width : img.width;
+        canvas.height = height ? height : img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        var dataURL = canvas.toDataURL();
+        return dataURL;
     }
 </script>
 
