@@ -90,7 +90,7 @@ var angleScale = { angle: 0, scale: 1, }
 
     getCanvasBase64(ShareImg.src) /* 把背景轉base64才能做合成 */
         .then(function (base64) {
-            console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
+            // console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
             ShareImg.src = base64; //選到的背景放入back 拿出來然後打API 轉http 
             // ajaxUpLoad(base64); //傳bg進去
         }, function (err) {
@@ -104,7 +104,12 @@ var angleScale = { angle: 0, scale: 1, }
             onrendered: function (canvas) { //畫布繪製完成後執行下面內容，function內的canvas這個參數就是已經被繪製成畫布
                 var file = canvas.toDataURL(); //預設是png圖片 base64  
                 // img = file;//圖片拿出
-                console.log("印出合成的圖片: ", file); //印出合成的圖片
+                var link = document.createElement('a');//創建一個a標籤
+                link.download = 'MotherCard.png';//a標籤增加一個download屬性，屬性值（my-image-name.jpg）就是合成下載後的文件名
+                link.href = canvas.toDataURL();//canvas.toDataURL()就是畫布的路徑，將路徑賦給a標籤的href
+                link.click();//模擬a標籤被點擊，這樣就可以下載了
+                
+                // console.log("印出合成的圖片: ", file); //印出合成的圖片
                 // alert("請稍等");
                 // document.body.appendChild(canvas); //印出合成好的圖片
                 ajaxUpLoad(file);//發送base64前端圖片 
@@ -167,7 +172,7 @@ var angleScale = { angle: 0, scale: 1, }
             },
             success: function (data) { //拿到成功的存儲圖片(http) 
                 console.log("成功: ", data.url);//data.url = 合成好的圖片
-                img = data.url; //成功拿到合成照片的資料
+                // img = data.url; //成功拿到合成照片的資料
                 localStorage.CombinePicture = data.url;
                 console.log("選擇好的背景:  ", localStorage.CombinePicture); //選擇好的圖片到 upload or share 頁面
                  location.href = "CombinePicture.html"; //完成後跳轉到合成好的頁面
