@@ -25,7 +25,11 @@
     .bgimg_ciclk {
         /* 選擇背景btn */
         top: 90%;
-        left: 44.5%;
+        left: 50%;
+        height: 30px;
+        width: 80px;
+        margin-top: -15px;
+        margin-left: -40px;
         position: absolute;
     }
 
@@ -74,50 +78,44 @@
         <div class="carousel-inner">
 
             <div class="carousel-item active">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,1,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,1,'back')">
                 </fieldset>
 
                 <img id="bg1" class="d-block w-100" src="img\b1.png" alt="First slide" onclick="showPreview(this, 1,'back')">
             </div>
 
             <div class="carousel-item">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,3,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,3,'back')">
                 </fieldset>
                 <img id="bg2" class="d-block w-100" src="img\b2.png" alt="Second slide" onclick="showPreview(this, 3,'back')">
             </div>
 
             <div class="carousel-item">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,5,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,5,'back')">
                 </fieldset>
                 <img id="bg3" class="d-block w-100" src="img\b3.png" alt="Third slide" onclick="showPreview(this, 5,'back')">
             </div>
 
             <div class="carousel-item">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,7,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,7,'back')">
                 </fieldset>
                 <img id="bg4" class="d-block w-100" src="img\b4.png" alt="Third slide" onclick="showPreview(this, 7,'back')">
             </div>
 
             <div class="carousel-item">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,9,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,9,'back')">
                 </fieldset>
                 <img id="bg5" class="d-block w-100" src="img\b5.png" alt="Third slide" onclick="showPreview(this, 9,'back')">
             </div>
 
             <div class="carousel-item">
-                <fieldset class="bgimg_ciclk">
-                    <input type="button" value="選擇背景" onclick="showPreview(this,11,'back')">
-                    <legend>背景圖</legend>
+                <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,11,'back')">
                 </fieldset>
 
                 <img id="bg6" class="d-block w-100" src="img\b6.png" alt="Third slide" onclick="showPreview(this, 11,'back')">
@@ -135,13 +133,7 @@
             <span class="sr-only">Previous</span>
         </a>
     </div>
-    <div id="img_load">
 
-        <div class="resize-container">
-            <img id="back" />
-        </div>
-
-    </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
