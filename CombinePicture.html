@@ -69,6 +69,7 @@
     <img id="CombineImg">
     <!-- <div id="test" class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
     <div class="set_btn">
+        <button onclick="remake()">重新製作</button>
         <button id="FB" onclick="FB_link()">點我分享到FB</button>
         <button id="Line" onclick="Line_link()">點我分享到LINE</button>
         <button id="download" onclick="download_img()">點我下載卡片</button>
@@ -161,6 +162,9 @@
         } catch (e) {
             console.log(e);
         };
+    }
+    function remake(){ //回到製作合成頁面
+        location.href = "reimgorsumbit.html";
     }
     function Line_link() {
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
