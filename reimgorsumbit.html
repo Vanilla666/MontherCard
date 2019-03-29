@@ -6,24 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/fakeLoader.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- bootstrap css -->
+
 </head>
 <style>
     #portrait {
         /* 被控制的圖片 */
         z-index: -1;
         top: 30%;
-        /* 30% */
         left: 35%;
-        /* 35% */
         background-color: rgb(58, 238, 34);
-        /* border-radius: 8px; */
         position: absolute;
         width: 30%;
         height: 20%;
-        /* 30 20*/
+
     }
 
     #back {
@@ -39,9 +36,7 @@
         position: absolute;
         touch-action: none;
         top: 30%;
-        /* 30% */
         left: 35%;
-        /* 35% */
         width: 31%;
         height: 21%;
         /* background-color: blue; */
@@ -53,6 +48,39 @@
         width: 769px;
         height: 960px;
     }
+
+    .lds-dual-ring {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+    }
+
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 46px;
+        height: 46px;
+        margin: 1px;
+        border-radius: 50%;
+        border: 5px solid rgb(182, 142, 34);
+        border-color: rgb(124, 3, 3) transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .modal-dialog {
+        margin: 50% auto;
+    }
+
+  
 </style>
 
 <body>
@@ -66,10 +94,33 @@
         <img id="portrait" />
         <!-- 上傳的圖片 -->
     </div>
-    <!-- <div class="fakeLoader"></div> -->
-    <button type="button" onclick="driverUpload();">重新上傳</button>
+
+    <button type="button" onclick="driverUpload()" class="btn btn-info btn-lg">重新上傳</button>
     <input type="file" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
-    <button onclick="down()" type="button">確認送出</button>
+
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" onclick="down()" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">確認送出</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">圖片製作中 請稍後...</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="margin-left:50%;" class="lds-dual-ring"> </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </body>
 <script src="js/interact.js"></script>
@@ -78,10 +129,10 @@
 <!-- 引用jq -->
 <script src="js/html2canvas.js"> </script>
 <!-- 從本地端引入 html2canvas 0.4.1版 這個插件的方法，可以將整個節點繪製成畫布 -->
-<script src="js/fakeLoader.min.js"></script>
-<!-- 引入 Loader -->
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!-- bootstrap js -->
 
 <script>
 
@@ -96,12 +147,7 @@
     console.log("背景是: ", back);
     ShareImg.src = back;//圖片換成剛剛合成好的背景圖片 ShareImg.src 轉base64
     console.log("ShareImg.src", ShareImg.src);
-    // $(document).ready(function () {
-    //     $.fakeLoader({
-    //         bgColor: '#2ecc71',
-    //         spinner: "spinner1"
-    //     });
-    // });
+
     getCanvasBase64(ShareImg.src) /* 把背景轉base64才能做合成 */
         .then(function (base64) {
             // console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64
@@ -119,10 +165,8 @@
                 var file = canvas.toDataURL(); //預設是png圖片 base64  
 
                 start_time = new Date().getTime();
-                $.fakeLoader({
-                    bgColor: '#2ecc71',
-                    spinner: "spinner1"
-                });
+
+
                 ajaxUpLoad(file);//發送base64前端圖片 
 
             },
@@ -132,7 +176,6 @@
     function driverUpload() {
         $('#file').click(); // 模擬文件上傳按鈕點擊操作
     }
-
 
     function fileshow(source, imgId) { //上傳圖片 this替代成 source 指的這個input 
         // console.log( $(source).children() );
@@ -147,7 +190,6 @@
             fr.readAsDataURL(file); // 即將被讀取的Blob或File對象
         }
     }
-
 
     function ajaxUpLoad(file) { // file = base64的前端img
         $.ajax({
