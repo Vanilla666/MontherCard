@@ -181,7 +181,7 @@
         getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
             .then(function (base64) { // 把背景轉base64
                 console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間            
-                download(base64, "測試.jpeg", "image/jpeg"); //把圖片下載到本地端   
+                download(base64, "測試.png", "image/png"); //把圖片下載到本地端   
             }, function (err) {
                 console.log(err);
             });
