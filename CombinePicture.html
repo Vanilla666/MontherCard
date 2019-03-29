@@ -71,7 +71,7 @@
     <div class="set_btn">
         <button onclick="remake()">重新製作</button>
         <button id="FB" onclick="FB_link()">點我分享到FB</button>
-        <button id="Line" onclick="Line_link()">點我分享到LINE</button>
+        <button id="Line" onclick="test_link()">點我分享到LINE</button>
         <button id="download" onclick="download_img()">點我下載卡片</button>
     </div>
 </body>
@@ -163,23 +163,31 @@
             console.log(e);
         };
     }
-    function remake(){ //回到製作合成頁面
+    function remake() { //回到製作合成頁面
         location.href = "reimgorsumbit.html";
     }
-    function Line_link() {
+    // function Line_link() {
+    //     var x = "http://211.23.17.100:3004/index.html";
+    //     console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
+    //     var link = "http://line.naver.jp/R/msg/text/?";
+    //     link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" +encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A"+ encodeURIComponent(x); //文字 及圖片分享
+    //     location.href = link;
+    // };
+    function test_link() {
         var x = "http://211.23.17.100:3004/index.html";
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" +encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A"+ encodeURIComponent(x); //文字 及圖片分享
+        link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" + encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A" + encodeURIComponent(x); //文字 及圖片分享
         location.href = link;
     };
+
     function download_img() { //下載圖片
-         
+
         document.getElementById("CombineImg").src;
-            getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
+        getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
             .then(function (base64) { // 把背景轉base64
-                 console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間            
-                download(base64,"測試.jpeg","image/jpeg"); //把圖片下載到本地端   
+                console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間            
+                download(base64, "測試.jpeg", "image/jpeg"); //把圖片下載到本地端   
             }, function (err) {
                 console.log(err);
             });
@@ -187,7 +195,7 @@
 
     }
 
-     function getCanvasBase64(img) {
+    function getCanvasBase64(img) {
         var image = new Image();
         //至關重要
         image.crossOrigin = '';
