@@ -167,9 +167,10 @@
         location.href = "reimgorsumbit.html";
     }
     function Line_link() {
+        var x = "http://211.23.17.100:3004/index.html";
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" +encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + encodeURIComponent(this.location.href); //文字 及圖片分享
+        link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" +encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + encodeURIComponent(x); //文字 及圖片分享
         location.href = link;
     };
     function download_img() { //下載圖片
