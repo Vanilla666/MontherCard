@@ -117,7 +117,7 @@
 
 <body>
     <!-- <img id="background_img"> -->
-
+    <div id="info"> </div>
     <div class="btn-container">
             <div class="resize-container">    
                 <img id="back" /><!-- 背景 -->
@@ -239,6 +239,7 @@
             },
             error: function (err) {
                 console.log("錯誤: ", err);
+                document.getElementById("info").innerHTML = err;
             }
         });
     }
