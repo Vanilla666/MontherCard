@@ -216,7 +216,7 @@
     function ajaxUpLoad(file) { // file = base64的前端img
         $.ajax({
             type: "POST",
-            url: 'http://211.23.17.100:3005', // 這裡打KOA後端
+            url: 'https://211.23.17.100:3005', // 這裡打KOA後端 加s
             async: true,
             data: { img: file }, // img(key):file(value)
             headers: {
