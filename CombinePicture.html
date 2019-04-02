@@ -90,10 +90,9 @@
     if (isAndroid == true) {
         document.getElementById("Cellphoto").innerHTML = "isAndroid"; //android终端
 
-    }else
-    {
+    } else {
         document.getElementById("Cellphoto").innerHTML = "isiOS"; //ios终端
-        
+
     }
     // alert('是否是Android：' + isAndroid);
     // alert('是否是iOS：' + isiOS);
@@ -175,7 +174,7 @@
     }
 
     function test_link() {
-        var x = "https://211.23.17.100:80/index.html"; //分享的網址
+        var x = "https://web.nutc-imac.com/index.html"; //分享的網址
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
         link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" + encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A" + encodeURIComponent(x); //文字 及圖片分享
@@ -185,13 +184,19 @@
     function download_img() { //下載圖片
 
         document.getElementById("CombineImg").src;
-        getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
-            .then(function (base64) { // 把背景轉base64
-                console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間            
-                download(base64, "測試.png", "image/png"); //把圖片下載到本地端   
-            }, function (err) {
-                console.log(err);
-            });
+        var link = document.createElement('a');
+        link.href = document.getElementById("CombineImg").src;
+        link.download = 'Download.jpg';
+        document.body.appendChild(link);
+        link.click();
+        // getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
+        //     .then(function (base64) { // 把背景轉base64
+        //         console.log("方式二》》》》》》》》》", base64); // 把圖片轉成base64 要一些時間       
+
+        //         // download(base64, "測試.png", "image/png"); //把圖片下載到本地端   
+        //     }, function (err) {
+        //         console.log(err);
+        //     });
 
 
     }
