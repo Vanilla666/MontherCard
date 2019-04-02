@@ -124,7 +124,7 @@
                 <div id="contoller" class="resize-drag"></div><!-- 控制框 --> 
                 <img id="portrait" /><!-- 上傳的圖片 -->
             </div>
-        <button type="button" onclick="driverUpload()" class="btn1">重新上傳</button>
+        <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
         <input type="file" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
         <!-- Trigger the modal with a button -->
         <button type="button" onclick="down()" class="btn2" data-toggle="modal" data-target="#myModal">確認送出</button>
@@ -216,7 +216,7 @@
     function ajaxUpLoad(file) { // file = base64的前端img
         $.ajax({
             type: "POST",
-            url: 'http://211.23.17.100:3005', // 這裡打KOA後端
+            url: 'https://211.23.17.100:3005', // 這裡打KOA後端
             async: true,
             data: { img: file }, // img(key):file(value)
             headers: {
