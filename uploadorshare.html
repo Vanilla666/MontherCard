@@ -145,7 +145,7 @@
     function Line_link() { // 把背景分享至LINE
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的baclground_img :", baclground_img); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img); //文字 及圖片分享
+        link += encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img)+"&openExternalBrowser=1"; //文字 及圖片分享
         location.href = link; //跳轉
     };
 </script>
