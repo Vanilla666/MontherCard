@@ -33,8 +33,9 @@
         position: absolute;
         font-family: Microsoft JhengHei;
     }
-
-
+    .QRcode{
+            position: absolute;
+    }
 
     @media screen and (max-width: 640px) {
         /*  X<640 手機尺寸 */
@@ -48,8 +49,9 @@
             width: 100%;
             height: 100%;
         }
-
-
+        .QRcode{    /*手機size不要QRcode*/
+            display: none;
+        }
     }
 
     @media screen and (min-width: 641px) and (max-width: 980px) {
@@ -57,14 +59,25 @@
         body {
             background-color: blueviolet;
         }
-
-
+        .QRcode{    /*平板size不要QRcode*/
+            display: none;
+        }
     }
 
     @media screen and (min-width: 981px) and (max-width: 1920px) {
         /*  981<X<1920 電腦尺寸 */
         body {
             background-color: rgb(150, 179, 25);
+        }
+        .showPhone{
+            display: none;
+        }
+        .QRcode{    /*電腦size跑出QRcode*/
+            display: "";
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+            font-family: Microsoft JhengHei;
         }
 
     }
@@ -74,65 +87,69 @@
 </style>
 
 <body>
-
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-
-            <div class="carousel-item active">
-                <fieldset>
-                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,1,'back')">
-                </fieldset>
-
-                <img id="bg1" class="d-block w-100" src="img\b1.png" alt="First slide" onclick="showPreview(this, 1,'back')">
-            </div>
-
-            <div class="carousel-item">
-                <fieldset>
-                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,3,'back')">
-                </fieldset>
-                <img id="bg2" class="d-block w-100" src="img\b2.png" alt="Second slide" onclick="showPreview(this, 3,'back')">
-            </div>
-
-            <div class="carousel-item">
-                <fieldset>
-                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,5,'back')">
-                </fieldset>
-                <img id="bg3" class="d-block w-100" src="img\b3.png" alt="Third slide" onclick="showPreview(this, 5,'back')">
-            </div>
-
-            <div class="carousel-item">
-                <fieldset>
-                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,7,'back')">
-                </fieldset>
-                <img id="bg4" class="d-block w-100" src="img\b4.png" alt="Third slide" onclick="showPreview(this, 7,'back')">
-            </div>
-
-            <div class="carousel-item">
-                <fieldset>
-                    <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,9,'back')">
-                </fieldset>
-                <img id="bg5" class="d-block w-100" src="img\b5.png" alt="Third slide" onclick="showPreview(this, 9,'back')">
-            </div>
-
-            <div class="carousel-item">
-                <fieldset>
-                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,11,'back')">
-                </fieldset>
-
-                <img id="bg6" class="d-block w-100" src="img\b6.png" alt="Third slide" onclick="showPreview(this, 11,'back')">
-            </div>
-
-        </div>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <img src="img\icon-arrow-right-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
-            <span class="sr-only">Next</span>
-        </a>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <img src="img\icon-arrow-left-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
-            <span class="sr-only">Previous</span>
-        </a>
+    <div class="QRcode">
+        <img src="img\qr code.png" >
+        <h1>此功能不支援電腦，請以手機掃描QR code後開啟</h1>
     </div>
+    <div class="showPhone">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
 
+                <div class="carousel-item active">
+                    <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,1,'back')">
+                    </fieldset>
+
+                    <img id="bg1" class="d-block w-100" src="img\b1.png" alt="First slide" onclick="showPreview(this, 1,'back')">
+                </div>
+
+                <div class="carousel-item">
+                    <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,3,'back')">
+                    </fieldset>
+                    <img id="bg2" class="d-block w-100" src="img\b2.png" alt="Second slide" onclick="showPreview(this, 3,'back')">
+                </div>
+
+                <div class="carousel-item">
+                    <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,5,'back')">
+                    </fieldset>
+                    <img id="bg3" class="d-block w-100" src="img\b3.png" alt="Third slide" onclick="showPreview(this, 5,'back')">
+                </div>
+
+                <div class="carousel-item">
+                    <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,7,'back')">
+                    </fieldset>
+                    <img id="bg4" class="d-block w-100" src="img\b4.png" alt="Third slide" onclick="showPreview(this, 7,'back')">
+                </div>
+
+                <div class="carousel-item">
+                    <fieldset>
+                        <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,9,'back')">
+                    </fieldset>
+                    <img id="bg5" class="d-block w-100" src="img\b5.png" alt="Third slide" onclick="showPreview(this, 9,'back')">
+                </div>
+
+                <div class="carousel-item">
+                    <fieldset>
+                            <input type="button" class="bgimg_ciclk" value="選擇背景" onclick="showPreview(this,11,'back')">
+                    </fieldset>
+
+                    <img id="bg6" class="d-block w-100" src="img\b6.png" alt="Third slide" onclick="showPreview(this, 11,'back')">
+                </div>
+
+            </div>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <img src="img\icon-arrow-right-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
+                <span class="sr-only">Next</span>
+            </a>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <img src="img\icon-arrow-left-b-128.png" class="carousel-control-next-icon" aria-hidden="true">
+                <span class="sr-only">Previous</span>
+            </a>
+        </div>
+    </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
