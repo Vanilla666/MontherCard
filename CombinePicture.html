@@ -9,65 +9,67 @@
 </head>
 
 <style>
-    @media screen and (max-width: 640px) {
-        /*  X<640 手機尺寸 */
-        body {
-            background-color: aqua;
-        }
-        .set_btn {
-            position: absolute;
-            top: 75%;
-            left: 30%;
-        }
-        #FB {
-            position: relative;
-            /* margin-left: 10%; */
-            /* left: 30%; */
-        }
-        #Line {
-            position: relative;
-            /* margin-left: 15%; */
-            /* left: 30%; */
-        }
-
-
+    .set_btn1 {
+        margin-top: -30px;
+        margin-left: -50px;
+        width: 100px;
+        height: 60px;
+        position: absolute;
+        top: 75%;
+        background-color: #3498DB;
+        color: white;
+        font-size: 16px;
+        font-family: Microsoft JhengHei;
     }
-
-    @media screen and (min-width: 641px) and (max-width: 980px) {
-        /*  641<X<980 平板尺寸 */
-        body {
-            background-color: blueviolet;
-        }
-        .set_btn {
-            position: absolute;
-            top: 125%;
-            left: 20%;
-        }
+    #remade{
+        left: 25%;
     }
-
-    @media screen and (min-width: 981px) and (max-width: 1920px) {
-        /*  981<X<1920 電腦尺寸 */
-        body {
-            background-color: rgb(150, 179, 25);
-        }
-        .set_btn {
-            position: absolute;
-            top: 125%;
-            left: 20%;
-        }
-
+    #FB{
+        left: 75%;
     }
+    .set_btn2 {
+        margin-top: -30px;
+        margin-left: -50px;
+        width: 100px;
+        height: 60px;
+        position: absolute;
+        top: 80%;
+        background-color: #3498DB;
+        color: white;
+        font-size: 16px;
+        font-family: Microsoft JhengHei;
+    }  
+    #Line{
+        left: 25%;
+    }
+    #download{
+        left: 75%;
+    }
+    #CombineImg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .Cellphoto{
+        width: 100%;
+        height: auto;
+        position: absolute;
+    }
+    body { margin: 0 }
 </style>
 
 <body>
-    <div id="Cellphoto"> </div>
-    <img id="CombineImg">
-    <!-- <div id="test" class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
-    <div class="set_btn">
-        <button onclick="remake()">重新製作</button>
-        <button id="FB" onclick="FB_link()">點我分享到FB</button>
-        <button id="Line" onclick="test_link()">點我分享到LINE</button>
-        <button id="download" onclick="download_img()">點我下載卡片</button>
+    <div id="Cellphoto"> 
+        <img id="CombineImg">
+        <!-- <div id="test" class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
+        <div class="set_btn1">
+            <button id="remade" onclick="remake()">重新製作</button>
+            <button id="FB" onclick="FB_link()">點我分享到FB</button>
+        </div>
+        <div class="set_btn2">
+            <button id="Line" onclick="test_link()">點我分享到LINE</button>
+            <button id="download" onclick="download_img()">點我下載卡片</button>
+        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
