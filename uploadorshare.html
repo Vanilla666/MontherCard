@@ -150,8 +150,8 @@
     }
     function Line_link() { // 把背景分享至LINE
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的baclground_img :", baclground_img); //改變
-        var link = "http://line.naver.jp/R/msg/text/?";
-        link += "openExternalBrowser=1"+encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img); //文字 及圖片分享
+        var link = "http://line.naver.jp/R/msg/text/?openExternalBrowser=1";
+        link += encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img); //文字 及圖片分享
         location.href = link; //跳轉
         return false;
     };
