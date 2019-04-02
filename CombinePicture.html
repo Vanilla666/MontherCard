@@ -90,11 +90,12 @@
     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
     var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     if (isAndroid == true) {
-        document.getElementById("Cellphoto").innerHTML = "isAndroid"; //android终端
-
+        // document.getElementById("Cellphoto").innerHTML = "isAndroid"; //android终端
+       
     } else {
-        document.getElementById("Cellphoto").innerHTML = "isiOS"; //ios终端
+        document.getElementById("Cellphoto").innerHTML = "isiOS 請長按下載圖片"; //ios终端
 
+        document.getElementById("download").hidden = true;
     }
     // alert('是否是Android：' + isAndroid);
     // alert('是否是iOS：' + isiOS);
