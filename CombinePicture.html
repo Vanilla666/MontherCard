@@ -103,44 +103,7 @@
 
     function FB_link() { //FB分享
         window.open("https://www.facebook.com/sharer/sharer.php?u="+picture, "_blank", "toolbar=0,status=0")
-    // window.open()
-        // document.getElementById("xx").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(picture)+"&=picture"+picture;
 
-        // console.log("asdsad");
-
-        // $.ajaxSetup({
-        //     cache: true
-        // });
-        // 取得臉書提供API
-        // $.getScript('//connect.facebook.net/en_UK/all.js', function () {
-        //     // Load the APP / SDK
-        //     FB.init({
-        //         appId: '2088163627887886',  // FB APPID
-        //         cookie: true, // set sessions cookies to allow your server to access the session?
-        //         status: true, // check the login status upon init?
-        //         xfbml: true, // parse XFBML tags on this page?
-        //         frictionlessRequests: true,
-        //         oauth: true,
-        //         version: 'v3.2'
-        //     });
-        //     FB.login(function (response) { //FB 登入
-        //         if (response.authResponse) {
-        //             FB.api('/me', function (response) { //打路由　
-        //                 console.log('Good to see you, ' + response.name + '.');
-        //             });
-        //             console.log(response.authResponse);　//吐回應資訊
-        //             window.authToken = response.authResponse.accessToken; //FB 
-        //             // 網頁轉圖片分享至臉書
-        //             FB.ui({
-        //                 method: 'share',
-        //                 href: 'https://developers.facebook.com/docs/',　//imgurl 要換成合成圖
-        //             }, function (response) {
-        //                 console.log(response); //回應訊息
-        //             });
-        //             // PostImageToFacebook(window.authToken);
-        //         }
-        //     })
-        // })
     }
     function PostImageToFacebook(authToken) { //分享到ＦＢ
         // complete_img 完整圖片 URL
