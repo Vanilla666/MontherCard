@@ -75,7 +75,6 @@
 <!-- 引用jq -->
 <script src="js/download.js"></script>
 <!-- 引用下載 -->
-<!-- <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script> -->
 <script async defer src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2"></script>
 <!-- FB SDK  -->
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
@@ -98,13 +97,13 @@
         document.getElementById("Cellphoto").innerHTML = "isiOS 請長按下載圖片"; //ios终端
         // document.getElementById("download").hidden = true;
     }
-    // alert('是否是Android：' + isAndroid);
-    // alert('是否是iOS：' + isiOS);
-
     function FB_link() { //FB分享
-        window.open("https://www.facebook.com/sharer/sharer.php?u="+picture, "_blank", "toolbar=0,status=0")
-
+        
+        window.open("https://www.facebook.com/sharer/sharer.php?u="+picture+"&quote=母親節賀卡", "_blank", "toolbar=0,status=0")
+    
+        
     }
+
     function PostImageToFacebook(authToken) { //分享到ＦＢ
         // complete_img 完整圖片 URL
         console.log("FB　token: " + authToken + "img URL: " + complete_img); // OK
@@ -142,6 +141,7 @@
             console.log(e);
         };
     }
+
     function remake() { //回到製作合成頁面
         location.href = "reimgorsumbit.html";
     }
