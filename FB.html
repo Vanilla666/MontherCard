@@ -17,8 +17,8 @@
         localStorage.getItem("imgURL"); //讀檔名
         console.log("印出拆解檔名: ", localStorage.getItem("imgURL"));
         const imgURL = localStorage.getItem("imgURL");
-        this.location.href += "#" + imgURL;
-        document.getElementById('img').src = `https://web.nutc-imac.com:3005/${location.hash.substr(1)}.png`;
+        this.location.href + "#" + imgURL;
+        document.getElementById('img').src = `https://web.nutc-imac.com:3005/${location.hash.slice(1)}.png`;
 
         function FB_link() { //FB分享
             window.open("https://www.facebook.com/sharer/sharer.php?u=" + this.location.href + "&quote=母親節賀卡", "_blank", "toolbar=0,status=0")
