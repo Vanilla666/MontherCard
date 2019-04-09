@@ -10,8 +10,17 @@
 
 <body>
     <img src="" id="img">
+    <button id="FB" onclick="FB_link()">點我分享到FB</button>
+
     <script>
-        document.getElementById('img').src = `//web.nutc-imac.com:3005/${location.hash.substr(1)}.png`;
+        localStorage.getItem("imgURL");
+        console.log("印出拆解檔名: ", localStorage.getItem("imgURL"));
+        const imgURL = localStorage.getItem("imgURL");
+        document.getElementById('img').src = `https://web.nutc-imac.com:3005/${imgURL}.png`;
+
+        function FB_link() { //FB分享
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + this.location.href + "&quote=母親節賀卡", "_blank", "toolbar=0,status=0")
+        }
     </script>
 </body>
 
