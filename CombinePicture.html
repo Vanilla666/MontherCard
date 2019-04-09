@@ -85,6 +85,10 @@
 
     console.log("本地網址: ", this.location.href);
     console.log("localStorage 存放的圖片URL ", picture);
+    let githubURL = new URL(picture);
+    const filterimg = githubURL.pathname.substr(1).slice(0,length-4); //拿到檔案名後
+    localStorage.imgURL = filterimg; //拿到檔案名後 到另一個頁面組合後 分享該頁的URL 
+    console.log( " 節取後 :", githubURL.pathname.substr(1).slice(0,length-4) , " 本來: ", githubURL.pathname.substr(1)); //字串
     var ShareImg = document.getElementById('CombineImg');
     ShareImg.src = picture;//圖片換成剛剛合成好的圖片
     var u = navigator.userAgent; //判斷系統 
@@ -98,10 +102,7 @@
         // document.getElementById("download").hidden = true;
     }
     function FB_link() { //FB分享
-        
         window.open("https://www.facebook.com/sharer/sharer.php?u="+picture+"&quote=母親節賀卡", "_blank", "toolbar=0,status=0")
-    
-        
     }
 
     function PostImageToFacebook(authToken) { //分享到ＦＢ
