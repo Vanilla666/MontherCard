@@ -18,8 +18,8 @@
         localStorage.getItem("imgURL"); //讀檔名
         console.log("印出拆解檔名: ", localStorage.getItem("imgURL"));
         const imgURL = localStorage.getItem("imgURL");//拿取檔案名
-        this.location.href = this.location.href  + imgURL; //特殊符號區別 + 拿取檔案名 但是FB localStorage不一樣所以是null
-        // const s = this.location.href = this.location.href  +"#!/" + imgURL; //特殊符號區別 + 拿取檔案名 但是FB localStorage不一樣所以是null
+        // this.location.href = this.location.href  + imgURL; //特殊符號區別 + 拿取檔案名 但是FB localStorage不一樣所以是null
+        const s = this.location.href = this.location.href  +"#!/" + imgURL; //特殊符號區別 + 拿取檔案名 但是FB localStorage不一樣所以是null
         document.getElementById('img').src = `https://web.nutc-imac.com:3005/${location.hash.slice(3)}.png`;
         document.getElementById('url').innerText = this.location.href;
 
