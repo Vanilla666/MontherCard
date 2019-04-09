@@ -11,9 +11,11 @@
 <body>
 
     <img src="" id="img">
+    <span id="url"></span>
     <button id="FB" onclick="FB_link()">點我分享到FB</button>
 
     <script>
+        document.getElementById('url').innerText = this.location.href;
         localStorage.getItem("imgURL"); //讀檔名
         console.log("印出拆解檔名: ", localStorage.getItem("imgURL"));
         const imgURL = localStorage.getItem("imgURL");
