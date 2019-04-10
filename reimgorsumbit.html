@@ -81,12 +81,12 @@
         margin: 30% auto;
     }
 
-    .btn1{
+    .btn1 {
         z-index: 1;
-        top:80%;
+        top: 80%;
         left: 25%;
         position: absolute;
-        background-color:#3498DB;
+        background-color: #3498DB;
         color: white;
         width: 100px;
         height: 60px;
@@ -95,12 +95,13 @@
         margin-left: -50px;
         font-family: Microsoft JhengHei;
     }
-    .btn2{
+
+    .btn2 {
         z-index: 1;
-        top:80%;
+        top: 80%;
         left: 75%;
         position: absolute;
-        background-color:#3498DB;
+        background-color: #3498DB;
         color: white;
         width: 100px;
         height: 60px;
@@ -109,7 +110,8 @@
         margin-left: -50px;
         font-family: Microsoft JhengHei;
     }
-    .btn-container{
+
+    .btn-container {
         position: absolute;
         width: 100%;
         height: auto;
@@ -120,11 +122,14 @@
     <!-- <img id="background_img"> -->
     <div id="info"> </div>
     <div class="btn-container">
-            <div class="resize-container">    
-                <img id="back" /><!-- 背景 -->
-                <div id="contoller" class="resize-drag"></div><!-- 控制框 --> 
-                <img id="portrait" /><!-- 上傳的圖片 -->
-            </div>
+        <div class="resize-container">
+            <img id="back" />
+            <!-- 背景 -->
+            <div id="contoller" class="resize-drag"></div>
+            <!-- 控制框 -->
+            <img id="portrait" />
+            <!-- 上傳的圖片 -->
+        </div>
         <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
         <input type="file" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
         <!-- Trigger the modal with a button -->
@@ -203,15 +208,22 @@
     function fileshow(source, imgId) { //上傳圖片 this替代成 source 指的這個input 
         // console.log( $(source).children() );
         var file = source.files[0]; //傳進的檔案
-        console.log(file.type); //檔案類型  
+        // console.log(file.type); //檔案類型  
         if (window.FileReader) {
             var fr = new FileReader(); //開啟檔案
             fr.onloadend = function (e) { //讀檔放入 背景沒有這樣做所以沒有合成成功
-                console.log(e.target.result);
+                // console.log(e.target.result);
                 document.getElementById(imgId).src = e.target.result; // 放到DOM元素 = 當前傳進的目標
+                console.log(`圖片長:${document.getElementById(imgId).height} 圖片寬: ${document.getElementById(imgId).width} `); // 拿到圖片長寬
+                
+                // scaleElement.width =  document.getElementById(imgId).width; //控制圖片的框寬 = 上傳圖片的框寬
+                // scaleElement.height =  document.getElementById(imgId).height; //控制圖片的框高 = 上傳圖片的框高
+
             }
             fr.readAsDataURL(file); // 即將被讀取的Blob或File對象
         }
+        // console.log(document.getElementById(imgId)); 
+
     }
 
     function ajaxUpLoad(file) { // file = base64的前端img
@@ -308,20 +320,20 @@
         })
 
         .on('resizemove', function (event) { //圖片伸縮
-            
-            var inputimg  = document.getElementById("portrait");
+
+            var inputimg = document.getElementById("portrait");
             var target = event.target,
                 x = (parseFloat(target.getAttribute('data-x')) || 0),//這行未必會用到 確認不會用到再刪除
                 y = (parseFloat(target.getAttribute('data-y')) || 0);//這行未必會用到 確認不會用到再刪除           
 
             target.style.width = inputimg.style.width = event.rect.width + 'px';
             target.style.height = inputimg.style.height = event.rect.height + 'px';
-            
+
             x += event.deltaRect.left;//這行未必會用到 確認不會用到再刪除
             y += event.deltaRect.top;//這行未必會用到 確認不會用到再刪除
 
-            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px,' + y + 'px)';   
-            inputimg.style.webkitTransform = inputimg.style.transform = 'translate(' + x + 'px,' + y + 'px)'; 
+            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+            inputimg.style.webkitTransform = inputimg.style.transform = 'translate(' + x + 'px,' + y + 'px)';
 
             target.setAttribute('data-x', x);   //這行未必會用到 確認不會用到再刪除
             target.setAttribute('data-y', y);   //這行未必會用到 確認不會用到再刪除
