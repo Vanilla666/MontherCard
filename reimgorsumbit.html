@@ -215,8 +215,9 @@
                 // console.log(e.target.result);
                 document.getElementById(imgId).src = e.target.result; // 放到DOM元素 = 當前傳進的目標
                 console.log(`圖片長:${document.getElementById(imgId).height} 圖片寬: ${document.getElementById(imgId).width} `); // 拿到圖片長寬
-                scaleElement.width = document.getElementById(imgId).width; //控制圖片的框寬 = 上傳圖片的框寬
-                scaleElement.height = document.getElementById(imgId).height; //控制圖片的框高 = 上傳圖片的框高
+                
+                // scaleElement.width =  document.getElementById(imgId).width; //控制圖片的框寬 = 上傳圖片的框寬
+                // scaleElement.height =  document.getElementById(imgId).height; //控制圖片的框高 = 上傳圖片的框高
 
             }
             fr.readAsDataURL(file); // 即將被讀取的Blob或File對象
