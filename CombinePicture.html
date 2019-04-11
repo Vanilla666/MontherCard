@@ -66,7 +66,7 @@
     <!-- <div id="test" class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="2" data-url="https://imgur.com/w8DrJvL" style="display: none;"></div> -->
     <div class="set_btn">
         <button onclick="remake()">重新製作</button>
-        <button  id="FB"  onclick="FB_link()" >點我分享到FB</button>
+        <button id="FB" onclick="FB_link()">點我分享到FB</button>
         <button id="Line" onclick="Line_link()">點我分享到LINE</button>
         <button id="download" onclick="download_img()">點我下載卡片</button>
     </div>
@@ -150,7 +150,7 @@
     }
 
     function Line_link() {
-        var x = "https://web.nutc-imac.com/index.html"; //分享的網址
+        var x = "https://web.nutc-imac.com"; //分享的網址
         console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的picture :", picture); //改變
         var link = "http://line.naver.jp/R/msg/text/?";
         link += encodeURIComponent("快來看我的母親節賀卡") + "%0D%0A" + encodeURIComponent(picture) + "%0D%0A" + encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A" + encodeURIComponent(x); //文字 及圖片分享
