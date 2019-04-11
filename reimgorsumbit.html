@@ -14,12 +14,12 @@
     #portrait {
         /* 被控制的圖片 */
         z-index: -1;
-        top: 30%;
-        left: 35%;
+        top: 10%;
+        left: 10%;
         background-color: rgb(58, 238, 34);
         position: absolute;
-        width: 30%;
-        height: 20%;
+        width: auto;
+        height: auto;
 
     }
 
@@ -36,8 +36,8 @@
     .resize-drag {
         position: absolute;
         touch-action: none;
-        top: 30%;
-        left: 35%;
+        top: 10%;
+        left: 10%;
         width: 30%;
         height: 20%;
         
@@ -132,7 +132,7 @@
             <!-- 上傳的圖片 -->
         </div>
         <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
-        <input type="file" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
+        <input type="file"  class="btn1" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
         <!-- Trigger the modal with a button -->
         <button type="button" onclick="down()" class="btn2" data-toggle="modal" data-target="#myModal">確認送出</button>
     </div>
@@ -209,22 +209,31 @@
     function fileshow(source, imgId) { //上傳圖片 this替代成 source 指的這個input 
         // console.log( $(source).children() );
         var file = source.files[0]; //傳進的檔案
+        var img = document.getElementById(imgId);
+        
         // console.log(file.type); //檔案類型  
         if (window.FileReader) {
             var fr = new FileReader(); //開啟檔案
             fr.onloadend = function (e) { //讀檔放入 背景沒有這樣做所以沒有合成成功
                 // console.log(e.target.result);
-                document.getElementById(imgId).src = e.target.result; // 放到DOM元素 = 當前傳進的目標
-                console.log(`圖片長:${document.getElementById(imgId).height} 圖片寬: ${document.getElementById(imgId).width} `); // 拿到圖片長寬
+                img = document.getElementById(imgId);
+                img.src = e.target.result; // 放到DOM元素 = 當前傳進的目標
+                console.log(img);
                 
-               //scaleElement.style.width =  document.getElementById(imgId).width+ 'px'; //控制圖片的框寬 = 上傳圖片的框寬
-               //scaleElement.style.height =  document.getElementById(imgId).height+ 'px'; //控制圖片的框高 = 上傳圖片的框高
+                setTimeout(function(){ 
+                    scaleElement.style.width = img.width+ 'px'; 
+                    scaleElement.style.height = img.height+ 'px'; 
+                }, 10);
+                //console.log(`圖片長:${img.height} 圖片寬: ${img.width} `); // 拿到圖片長寬
+                
+               
+               
 
             }
+            
             fr.readAsDataURL(file); // 即將被讀取的Blob或File對象
         }
-        // console.log(document.getElementById(imgId)); 
-
+        
     }
 
     function ajaxUpLoad(file) { // file = base64的前端img
