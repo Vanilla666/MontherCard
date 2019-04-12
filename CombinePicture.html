@@ -157,7 +157,7 @@
         document.getElementById("CombineImg").src;
         var link = document.createElement('a');
         link.href = document.getElementById("CombineImg").src + '?openExternalBrowser=1';//Line url加上 ?openExternalBrowser=1，就能強制用外部瀏覽器開啟
-        link.download = 'Download.jpg';
+//         link.download = 'Download.jpg';
         document.body.appendChild(link);
         link.click();
         // getCanvasBase64(document.getElementById("CombineImg").src) /* 把背景轉base64才能做合成 */
