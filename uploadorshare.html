@@ -66,9 +66,9 @@
         height: 60px;
         top: 80%;
         left: 75%;
-        margin-top: -90px;
+        margin-top: -150px; /* 90 ->150 */
         margin-left: -50px;
-        overflow: auto;
+        /* overflow: auto; */
         /* 在小屏幕上啟用滾動 */
         z-index: 1;
     }
@@ -100,7 +100,7 @@
     <!-- 主要div包裹著button和選項 -->
     <div class="abc">
         <button onclick="upLoadimg()" class="btn1">製作卡片</button>
-        <button onclick="share()" class="dropbtn">直接分享</button>
+        <button onclick="share()" class="dropbtn">直接分享</button> 
         <div id="myDropdown" class="dropdown-content">
             <button id="Line" onclick="Line_link()">分享到LINE</a>
             <button id="FB" onclick="FB_link()">分享到FB</a>
@@ -118,7 +118,7 @@
     console.log("localStorage 存放的背景URL ", baclground_img);
 
     function share() {
-        document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("myDropdown").classList.toggle("show"); // 按下後跑出下拉menu
     }
 
     function upLoadimg() {
