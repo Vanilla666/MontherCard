@@ -142,7 +142,7 @@
         //console.log("this.location.src: ", this.location.src, "this Link: ", this.location.href, "產生的baclground_img :", baclground_img); //改變
         var x = "https://web.nutc-imac.com"; //分享的網址
         var link = "http://line.naver.jp/R/msg/text/?";
-        link += encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img) + "%0D%0A" + encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A" + encodeURIComponent(x); //文字 及圖片分享
+        link += encodeURIComponent("分享背景")   + "%0D%0A" + encodeURIComponent(baclground_img+"?openExternalBrowser=1") + "%0D%0A" + encodeURIComponent("如果你也想製作賀卡快加入中國信託財富管理") + "%0D%0A" + encodeURIComponent(x); //文字 及圖片分享
         location.href = link; //跳轉
         return false;
     };
