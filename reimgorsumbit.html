@@ -233,19 +233,10 @@
                     scaleElement.style.width = img.width + 'px';
                     scaleElement.style.height = img.height + 'px';
                     var target = event;
-                    // document.getElementById("info").innerHTML = `target: ${target}  img.x : ${ scaleElement.style.offsetLeft} , img.y: ${ scaleElement.style.offsetTop} `; //讀取上傳圖的top left
-
-                    // keep the dragged position in the data-x/data-y attributes    將拖動位置保留在data-x / data-y屬性中
-                    // x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-                    // y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-                    scaleElement.style.top = '10%';
-
-                    scaleElement.style.left = '10%';
 
                     console.log(`圖片長:${img.height} 圖片寬: ${img.width} `); // 拿到圖片長寬
 
-                }, 10);
+                }, 500);
 
             }
 
@@ -280,7 +271,7 @@
             },
             error: function (err) {
                 console.log("錯誤: ", err);
-                document.getElementById("info").innerHTML = err.statusText;
+                // document.getElementById("info").innerHTML = err.statusText;
             }
         });
     }
