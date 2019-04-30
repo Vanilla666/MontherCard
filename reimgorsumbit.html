@@ -154,7 +154,7 @@
             <!-- 控制框 -->
             <img id="portrait" />
             <!-- 上傳的圖片 -->
-            <input class="card_text">  </input><!--  CSS改變放置位置  -->
+            <input id="input_text" class="card_text" placeholder="請輸入文字">  </input><!-- input_text如果沒有值要隱藏起來 CSS改變放置位置  -->
 
         </div>
         <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
@@ -217,7 +217,12 @@
         });
 
     function down() { //這個函數是點擊下載執行的方法
-
+        if( document.getElementById("input_text").value ){ //如果有輸入文字就印出來
+            console.log(`輸入文字: ${document.getElementById("input_text").value } `);
+        }else{
+            document.getElementById("input_text").hidden = true;
+        }
+        
         html2canvas($(".resize-container"), { //這是使用了html2canvas這個插件的方法，將class為resize-container的整個節點繪製成畫布
             // useCORS: true,
             onrendered: function (canvas) { //畫布繪製完成後執行下面內容，function內的canvas這個參數就是已經被繪製成畫布
