@@ -124,6 +124,23 @@
         width: 100%;
         height: auto;
     }
+    .card_text{
+        z-index: 1;
+        top: 80%;
+        left: 50%;
+        position: absolute;
+        /* background-color: #3498DB; */
+        /* color: white; */
+         width: 150px; 
+         height: 80px; 
+        
+        text-align:center; /* input 文字置中 */
+        font-size: 16px;
+        margin-top: 40px;
+        margin-left: -76px;
+        font-family: Microsoft JhengHei;
+
+    }
 </style>
 
 <body>
@@ -137,6 +154,8 @@
             <!-- 控制框 -->
             <img id="portrait" />
             <!-- 上傳的圖片 -->
+            <input class="card_text">  </input><!--  CSS改變放置位置  -->
+
         </div>
         <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
         <input type="file" class="btn1" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
