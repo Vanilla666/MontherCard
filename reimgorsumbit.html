@@ -79,7 +79,6 @@
         0% {
             transform: rotate(0deg);
         }
-
         100% {
             transform: rotate(360deg);
         }
@@ -89,25 +88,47 @@
         margin: 30% auto;
     }
 
-    .btn1 {
-        z-index: 1;
-        top: 80%;
+    #upload_pic {
         left: 25%;
+    }
+
+    #combine {
+        left: 75%;
+    }
+    #font{
+        left: 50%;
+    }
+    #font:hover,
+    #font:focus {
+        background-color: #3498DB;
+    }
+    .show { display: block; }
+    .dropdown-content {
+        /* btn 底下的選項 */
+        display: none;
         position: absolute;
+        width: 100px;
+        height: 60px;
+        top: 80%;
+        left: 50%;
+        margin-top: -150px; /* 90 ->150 */
+        margin-left: -50px;
+        /* overflow: auto; */
+        /* 在小屏幕上啟用滾動 */
+        z-index: 1;
+    }
+    .dropdown-content button {
         background-color: #3498DB;
         color: white;
         width: 100px;
         height: 60px;
         font-size: 16px;
-        margin-top: -30px;
-        margin-left: -50px;
         font-family: Microsoft JhengHei;
     }
 
-    .btn2 {
+    .btn_css{
         z-index: 1;
         top: 80%;
-        left: 75%;
         position: absolute;
         background-color: #3498DB;
         color: white;
@@ -118,7 +139,6 @@
         margin-left: -50px;
         font-family: Microsoft JhengHei;
     }
-
     .btn-container {
         position: absolute;
         width: 100%;
@@ -129,17 +149,16 @@
         top: 0%;
         left: 50%;
         position: absolute;
-        /* background-color: #3498DB; */
-        /* color: white; */
-         /* width: 150px;  */
-         height: 40px; 
-        
+        list-style:none;
+
         text-align:center; /* input 文字置中 */
+        height: 50px; 
+
         font-size: 16px;
         margin-top: 75px;
         margin-left: -76px;
         font-family: Microsoft JhengHei;
-
+        
     }
 </style>
 
@@ -154,13 +173,21 @@
             <!-- 控制框 -->
             <img id="portrait" />
             <!-- 上傳的圖片 -->
-            <input id="input_text" class="card_text" placeholder="請輸入文字">  </input><!-- input_text如果沒有值要隱藏起來 CSS改變放置位置  -->
+            <textarea id="input_text" rows="5" class="card_text" placeholder="請輸入文字" maxlength="20">  </textarea><!-- input_text如果沒有值要隱藏起來 CSS改變放置位置  -->
 
         </div>
-        <button type="button" onclick="driverUpload()" class="btn1">上傳圖片</button>
+        <button id="upload_pic" onclick="driverUpload()" class="btn_css">上傳圖片</button>
         <input type="file" class="btn1" id="file" style="display: none" onchange="fileshow(this,'portrait')" />
         <!-- Trigger the modal with a button -->
-        <button type="button" onclick="down()" class="btn2" data-toggle="modal" data-target="#myModal">確認送出</button>
+
+        <button id="font" onclick="share()" class="btn_css">字體大小</button>
+        <div id="myDropdown" class="dropdown-content">
+            <button id="big" onclick="big()">大</a>
+            <button id="mid" onclick="mid()">中</a>
+            <button id="small" onclick="small()">小</a>
+        </div>
+
+        <button id="combine" onclick="down()" class="btn_css" data-toggle="modal" data-target="#myModal">確認送出</button>
     </div>
 
     <!-- Modal -->
@@ -194,6 +221,34 @@
 <!-- bootstrap js -->
 
 <script>
+    window.onclick = function (event) {
+        if (!event.target.matches('#font')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    function share() {
+        document.getElementById("myDropdown").classList.toggle("show"); // 按下後跑出下拉menu
+    }
+    var text = document.getElementById('input_text');
+    function big(){
+        console.log("big");
+        text.style.fontSize = '25px';
+    }
+    function mid(){
+        console.log("mid");
+        text.style.fontSize = '16px';
+    }
+    function small(){
+        console.log("small");
+        text.style.fontSize = '8px';
+    }
 
     var angleScale = { angle: 0, scale: 1, }
     var currentAngle = 0, currentScale = 1
